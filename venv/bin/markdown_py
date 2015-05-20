@@ -1,4 +1,0 @@
-#!/Users/pierre/myproject/venv/bin/python
-# EASY-INSTALL-SCRIPT: 'Markdown==2.6.1','markdown_py'
-__requires__ = 'Markdown==2.6.1'
-__import__('pkg_resources').run_script('Markdown==2.6.1', 'markdown_py')
