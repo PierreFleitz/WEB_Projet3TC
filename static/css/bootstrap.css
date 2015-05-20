@@ -6582,13 +6582,16 @@ button.close {
   }
 }
 
-.lienCarrousel:link  {
+.lienCarrousel{
+	color:white;
+}
+
+.lienCarrousel:link, .lienCarrousel:hover, .lienCarrousel:active {
 	color:white;
 	text-decoration:none;
 }
 .lienCarrousel:hover {
-	font-weight:bold;
-	text-decoration:none;
+	font-weight:bold;	
 }
 .erreurform {
 	color:red;
