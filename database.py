@@ -137,6 +137,9 @@ def cat3():
 def cat4():
     return render_template('Categ4.html')
 
+@app.route('/item')
+def item():
+    return render_template('portfolio-item.html')
 
 
 
