@@ -108,7 +108,6 @@ def login():
 def contact():
     return render_template('contact.html')
 
-
 @app.route('/error')
 def error():
     return render_template('404.html')
@@ -140,10 +139,6 @@ def cat4():
 @app.route('/item')
 def item():
     return render_template('portfolio-item.html')
-
-
-
-
 
 @app.route('/logout')
 def logout():
