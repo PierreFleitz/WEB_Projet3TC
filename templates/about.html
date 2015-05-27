@@ -84,7 +84,11 @@
                                 </ul>
                             </li>
                             <li>
+                                {% if 'username' in session %}
+                                <a href="/logout">Déconnection</a>
+                                {% else%}
                                 <a href="/login">Se connecter</a>
+                                {% endif%}
                             </li>
                         </ul>
                     </div>
