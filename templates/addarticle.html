@@ -138,6 +138,12 @@
                                 <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Entrez le contenu de votre article." maxlength="10000" style="resize:none"></textarea>
                             </div>
                         </div>
+
+                        <form method="post" action="page.php" enctype="multipart/form-data">
+                        <input type="file" name="nom" />
+
+                        <hr>
+
                         <div id="success"></div>
                         <!-- For success/fail messages -->
                         <button type="submit" class="btn btn-primary">Envoyé l'article</button>
