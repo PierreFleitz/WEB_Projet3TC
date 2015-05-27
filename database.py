@@ -28,35 +28,35 @@ metadata = MetaData()
 membre = Table('membre', metadata,                          
             Column('idMembre', Integer, autoincrement=True, primary_key=True),
             Column('pseudo',String,nullable=False),
-            Column('Name', String,nullable=False),
-            Column('Surname' , String ,nullable=False),
-            Column('Age', Integer,nullable=False),
-            Column('Mail', String,nullable=False),
-            Column('Password', String,nullable=False))
+            Column('nom', String,nullable=False),
+            Column('prenom' , String ,nullable=False),
+            Column('age', Integer,nullable=False),
+            Column('mail', String,nullable=False),
+            Column('password', String,nullable=False))
 
 article = Table('article', metadata,
-			Column('TitreArticle', String, nullable=False),
+			Column('titreArticle', String, nullable=False),
             Column('idArticle', Integer, autoincrement=True, primary_key=True),
             Column('idMembre', Integer, ForeignKey('membre.idMembre'),nullable=False),
-            Column('Date', TEXT, nullable=False),
-            Column('NoteMoyenne', Integer, nullable=False),
+            Column('date', TEXT, nullable=False),
+            Column('noteMoyenne', Integer, nullable=False),
             Column('idCategorie', Integer, nullable=False),
-            Column('ContenuArticle', BLOB, nullable=False))
+            Column('contenuArticle', BLOB, nullable=False))
 
-CategorieLink= Table('CategorieLink', metadata,
+CategorieLink= Table('categorieLink', metadata,
 			Column('idLink',Integer,autoincrement=True,primary_key=True),
-			Column('idCategorie', Integer,ForeignKey('Categories.idCategorie'),nullable=False),
+			Column('idCategorie', Integer,ForeignKey('categories.idCategorie'),nullable=False),
             Column('idArticle', Integer, ForeignKey('article.idArticle'),nullable=False))
 
-Categories= Table('Categories', metadata,
+Categories= Table('categories', metadata,
 			Column('idCategorie', Integer,autoincrement=True, primary_key=True),
-			Column('idLink',Integer,ForeignKey('CategorieLink.idLink')),
+			Column('idLink',Integer,ForeignKey('categorieLink.idLink')),
             Column('nomCategorie', String, nullable=false),
-            Column('Description', TEXT, nullable=false))
+            Column('description', TEXT, nullable=false))
 
 
-Notes= Table('Notes', metadata,
-			Column('idLink', Integer,ForeignKey('CategorieLink.idLink')),
+Notes= Table('notes', metadata,
+			Column('idLink', Integer,ForeignKey('categorieLink.idLink')),
 			Column('idNote',Integer,autoincrement=True,primary_key=True),
             Column('note', String, nullable=false))
 
@@ -70,14 +70,19 @@ def hash_for(password):
     salted = '%s @ %s' % (SALT, password)
     return hashlib.sha256(salted).hexdigest()
 
+#Definition contenu article
+
+
+
 #Inscription Membre
-def inscription(prenom,nom,surname,age,mail,password):
+def inscription(prenom=None,nom=None,pseudo=None,age=None,mail=None,password=None):
     connection=engine.connect()
     try:
-        if connection.execute(membre.insert().values(Surname=prenom,Name=nom,pseudo=surname,Age=age,Mail=mail,Password=password)) != None :
-            flash('Creation de compte reussie')
+        if  prenom != None and nom != None and pseudo != None and mail != None and password != None:
+            connection.execute(membre.insert().values(prenom=prenom,nom=nom,pseudo=pseudo,age=age,mail=mail,password=password)) 
             return True
         else:
+            flash('Creation de compte impossible, parametres manquant')
             return False
 
     finally:
@@ -87,13 +92,14 @@ def inscription(prenom,nom,surname,age,mail,password):
 def authentification(mail, password):
   connection = engine.connect()
   try:
-        if connection.execute(select([membre.c.Mail]).where(membre.c.Mail == mail)).fetchone() is None:
+        if connection.execute(select([membre.c.mail]).where(membre.c.mail == mail)).fetchone() is None:
+            flash('Veuillez vous inscrire pour vous connecter')
             return False
         else:
             sel = select([membre]).where(
                 and_(
-                    membre.c.Mail == mail,
-                    membre.c.Password== password
+                    membre.c.mail == mail,
+                    membre.c.password == password
                 )
             )
             return connection.execute(sel).fetchone() != None
@@ -118,11 +124,11 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   if request.method == 'POST':
-    if authentification(request.form['mail'], request.form['password']) : #request lit le contenu
+    if authentification(request.form['mail'], request.form['password']): #request lit le contenu
         session['username'] = request.form['mail']
         return redirect('/index' )
     else:
-        flash('Mot de passe ou login invalide ou inexistant' + request.form['email'])
+        flash('Mot de passe/login invalide ou inexistant: ' + request.form['mail'])
         return redirect('/login')
   else:
     return render_template('login.html')
@@ -132,8 +138,8 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
   if request.method == 'POST':
-    if inscription(request.form['name'],request.form['surname'],request.form['nickname'],request.form['age'],request.form['mail'], request.form['password']): #request lit le contenu
-        session['username'] = request.form['surname']
+    if inscription(request.form['prenom'],request.form['nom'],request.form['pseudo'],request.form['age'],request.form['mail'], request.form['password']): #request lit le contenu
+        session['username'] = request.form['pseudo']
         return redirect('/index' )
     
   else:
