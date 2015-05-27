@@ -104,10 +104,10 @@
 				
 				<div class="row">
 					<div class="col-xs-12">
-						<form action="/login?from={{ from_page }}" method="POST" class="form-inline" role="form">
+						<form action="/login" method="POST" class="form-inline" role="form">
 							<div class="form-group">
 								<label class="sr-only" for="login">Login</label>
-								<input type="text" class="form-control" name="login" id="login" placeholder="Enter login">
+								<input type="text" class="form-control" name="mail" id="mail" placeholder="Enter Email">
 							</div>
 							<div class="form-group">
 								<label class="sr-only" for="password">Password</label>
@@ -131,9 +131,9 @@
 						</div>
 					</div>
 					
-					<form action="/login?from={{ from_page }}" method="POST" class="form-inline" role="form" onBlur="return verifForm">
+					<form action="/signup" method="POST" class="form-inline" role="form" onBlur="return verifForm">
 						<div class="form-group">
-							<label class="sr-only" for="Name">Prénom</label>
+							<label class="sr-only" for="name">Prénom</label>
 							<input type="text" class="form-control" name="name" id="name" placeholder="Prénom" onBlur="verifName(this)">
 							<span id="erreurName" class="erreurform"></span> <span id="validName" class="validform"></span> 
 						</div>

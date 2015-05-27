@@ -70,23 +70,38 @@ def hash_for(password):
     salted = '%s @ %s' % (SALT, password)
     return hashlib.sha256(salted).hexdigest()
 
+#Inscription Membre
+def inscription(prenom,nom,surname,age,mail,password):
+    connection=engine.connect()
+    try:
+        if connection.execute(membre.insert().values(Surname=prenom,Name=nom,pseudo=surname,Age=age,Mail=mail,Password=password)) != None :
+            flash('Creation de compte reussie')
+            return True
+        else:
+            return False
+
+    finally:
+        connection.close()
+
 #Identification ou creation formulaire
-def authenticate_or_create(pseudo, password):
+def authentification(mail, password):
   connection = engine.connect()
   try:
-		if connection.execute(select([membre.c.pseudo]).where(membre.c.pseudo == pseudo)).fetchone() is None:
-			connection.execute(membre.insert().values(pseudo=pseudo, password=hash_for(password),))
-			return True 
-		else:
-			sel = select([membre]).where(
-				and_(
-					membre.c.pseudo == pseudo,
-					membre.c.password_hash == hash_for(password)
-				)
-			)
-			return connection.execute(sel).fetchone() != None
+        if connection.execute(select([membre.c.Mail]).where(membre.c.Mail == mail)).fetchone() is None:
+            return False
+        else:
+            sel = select([membre]).where(
+                and_(
+                    membre.c.Mail == mail,
+                    membre.c.Password== password
+                )
+            )
+            return connection.execute(sel).fetchone() != None
+        
   finally:
     connection.close() 
+
+#Affichage des meilleurs articles pour item
 
 
 
@@ -100,9 +115,31 @@ def page():
 def index():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+  if request.method == 'POST':
+    if authentification(request.form['mail'], request.form['password']) : #request lit le contenu
+        session['username'] = request.form['mail']
+        return redirect('/index' )
+    else:
+        flash('Mot de passe ou login invalide ou inexistant' + request.form['email'])
+        return redirect('/login')
+  else:
     return render_template('login.html')
+
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+  if request.method == 'POST':
+    if inscription(request.form['name'],request.form['surname'],request.form['nickname'],request.form['age'],request.form['mail'], request.form['password']): #request lit le contenu
+        session['username'] = request.form['surname']
+        return redirect('/index' )
+    
+  else:
+    flash('Erreur lors de la creation du compte')
+    return render_template('login.html')
+
 
 @app.route('/contact')
 def contact():
@@ -142,9 +179,8 @@ def item():
 
 @app.route('/logout')
 def logout():
-    from_page = request.args.get('from', 'index')
     session.clear()
-    return redirect('/index/' + from_page)
+    return redirect('/index' )
 
 # ............................................................................................... #
 
