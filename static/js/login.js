@@ -80,34 +80,44 @@ function verifAge(champ)
 		}
 	}
 	
-	function verifPassword(champ) {
-		if(champ.value.length < 5 ) {
-			document.getElementById('erreurPassword').innerHTML = "	Le mot de passe doit être supérieur à 5 caractères !"
-			document.getElementById('validPassword').innerHTML = "";
-			surligne(champ, true);
-			return false;
-		}
-		else{
-			document.getElementById('validPassword').innerHTML = "	Ce mot de passe est suffisant";
-			document.getElementById('erreurPassword').innerHTML = "";
-			surligne(champ, false);
-			return true;
-		}
+function verifPassword(champ) {
+	if(champ.value.length < 5 ) {
+		document.getElementById('erreurPassword').innerHTML = "	Le mot de passe doit être supérieur à 5 caractères !"
+		document.getElementById('validPassword').innerHTML = "";
+		surligne(champ, true);
+		return false;
 	}
-	
-	function verifForm(f)
-	{
-		var pseudoOk = verifPseudo(f.pseudo);
-		var mailOk = verifMail(f.email);
-		var ageOk = verifAge(f.age);
-		
-		if(pseudoOk && mailOk && ageOk)
+	else{
+		document.getElementById('validPassword').innerHTML = "	Ce mot de passe est suffisant";
+		document.getElementById('erreurPassword').innerHTML = "";
+		surligne(champ, false);
 		return true;
-		else
-		{
-			alert("Veuillez remplir correctement tous les champs");
-			return false;
-		}
 	}
+}
+
+function verifForm(f)
+{
+	var pseudoOk = verifPseudo(f.pseudo);
+	var mailOk = verifMail(f.mail);
+	var ageOk = verifAge(f.age);
+	var passwordOk = verifPassword(f.password)
+
 	
+	if(pseudoOk && mailOk && ageOk){
+		//return true
+	}
+	else
+	{
+		alert("Veuillez remplir correctement tous les champs");
+		return false;
+	}
+
+	if(passwordOk){
+		return true;
+	}
+	else{
+		alert("OBUHOU");
+		return false;
+	}
+}
 		

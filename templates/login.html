@@ -152,10 +152,10 @@
 				</div>
 			</div>
 
-			<form action="/signup" method="POST" class="form-inline" role="form" onBlur="return verifForm">
+			<form action="/signup" method="POST" class="form-inline" role="form" onsubmit="return verifForm(this)">
 				<div class="form-group">
 					<label class="sr-only" for="Prénom">Prénom</label>
-					<input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" onBlur="verifName(this)">
+					<input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" onBlur="verifName(this)" required>
 					<span id="erreurName" class="erreurform"></span> <span id="validName" class="validform"></span> 
 				</div>
 
@@ -163,7 +163,7 @@
 
 				<div class="form-group">
 					<label class="sr-only" for="Nom">NOM</label>
-					<input type="text" class="form-control" name="nom" id="nom" placeholder="Nom de famille" onBlur="verifName(this)">
+					<input type="text" class="form-control" name="nom" id="nom" placeholder="Nom de famille" onBlur="verifName(this)" required>
 					<span id="erreurName" class="erreurform"></span>  <span id="validName" class="validform"></span> 
 				</div>
 
@@ -171,7 +171,7 @@
 
 				<div class="form-group">
 					<label class="sr-only" for="Pseudo">Pseudo</label>
-					<input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Pseudo" onBlur="verifPseudo(this)">
+					<input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Pseudo" onBlur="verifPseudo(this)" required>
 					<span id="erreurPseudo" class="erreurform"></span>  <span id="validPseudo" class="validform"></span>
 				</div>
 
@@ -179,7 +179,7 @@
 
 				<div class="form-group">
 					<label class="sr-only" for="mail">Mail</label>
-					<input type="text" class="form-control" name="mail" id="mail" placeholder="Adresse mail" onBlur="verifMail(this)"> 
+					<input type="text" class="form-control" name="mail" id="mail" placeholder="Adresse mail" onBlur="verifMail(this)" required> 
 					<span id="erreurMail" class="erreurform"></span> <span id="validMail" class="validform"></span>
 				</div>
 
@@ -187,14 +187,14 @@
 
 				<div class="form-group">
 					<label class="sr-only" for="Age">Age</label>
-					<input type="text" class="form-control" name="age" id="age" placeholder="Âge" onBlur="verifAge(this)"> 
+					<input type="text" class="form-control" name="age" id="age" placeholder="Âge" onBlur="verifAge(this)" required> 
 					<span id="erreurAge" class="erreurform"></span> <span id="validAge" class="validform"></span>
 
 					<hr>
 
 					<div class="form-group">
 						<label class="sr-only" for="password">Mot de passe</label>
-						<input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" onBlur="verifPassword(this)">
+						<input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" onBlur="verifPassword(this)" required>
 						<span id="erreurPassword" class="erreurform"></span> <span id="validPassword" class="validform"></span>
 					</div>
 
