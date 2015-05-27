@@ -93,7 +93,6 @@ def authentification(mail, password):
   connection = engine.connect()
   try:
         if connection.execute(select([membre.c.mail]).where(membre.c.mail == mail)).fetchone() is None:
-            flash('Veuillez vous inscrire pour vous connecter')
             return False
         else:
             sel = select([membre]).where(
