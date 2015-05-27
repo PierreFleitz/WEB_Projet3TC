@@ -25,108 +25,113 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <![endif]-->
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/index/">FeBB</a>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index/">FeBB</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catégories<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/cat1"> Actualité</a>
+                                </li>
+                                <li>
+                                    <a href="/cat2"> Lifestyle</a>
+                                </li>
+                                <li>
+                                    <a href="/cat3"> Voiture</a>
+                                </li>
+                                <li>
+                                    <a href="/cat4"> Humour</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/about">Qui sommes nous?</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/faq">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="/error">404</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            {% if 'username' in session %}
+                            <a href="/logout">Déconnection</a>
+                            {% else%}
+                            <a href="/login">Se connecter</a>
+                            {% endif%}
+                            
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catégories<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/cat1"> Actualité</a>
-                            </li>
-                            <li>
-                                <a href="/cat2"> Lifestyle</a>
-                            </li>
-                            <li>
-                                <a href="/cat3"> Voiture</a>
-                            </li>
-                            <li>
-                                <a href="/cat4"> Humour</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact</a>
-                    </li>
-                    <li>
-                        <a href="/about">Qui sommes nous?</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/faq">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="/error">404</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/login">Se connecter</a>
-                    </li>
-                </ul>
+            <!-- /.container -->
+        </nav>
+
+        <!-- Header Carousel -->
+        <header id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="/faq"><div class="fill" style="background-image:url('http://images2.alphacoders.com/669/66982.jpg');"></div></a> 
+                    <div class="carousel-caption">
+
+                        <h2> <a class="lienCarrousel" href="/faq">FAQ du swag</a></h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="contact.html"><div class="fill" style="background-image:url('http://fc07.deviantart.net/fs70/f/2012/207/4/9/tech_a_wallpaper_1900x1080_by_n7revenant-d58pqef.png');"></div></a>
+                    <div class="carousel-caption">
+                        <h2><a class="lienCarrousel" href="/contact">Contacts</a></h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="http://www.siteduzero.com" target="_blank"> <div class="fill" style="background-image:url('http://blog.lenycom.com/wp-content/gallery/wallpaper2/1091154011.jpg');"></div></a>
+                    <div class="carousel-caption">
+                        <h2><a class="lienCarrousel" href="http://www.siteduzero.com">Site du zéro !</a></h2>
+                    </div>
+                </div>
             </div>
-            <!-- /.navbar-collapse -->
+
+            <hr>
+
+
         </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <a href="/faq"><div class="fill" style="background-image:url('http://images2.alphacoders.com/669/66982.jpg');"></div></a> 
-                <div class="carousel-caption">
-										
-                    <h2> <a class="lienCarrousel" href="/faq">FAQ du swag</a></h2>
-                </div>
-            </div>
-            <div class="item">
-                <a href="contact.html"><div class="fill" style="background-image:url('http://fc07.deviantart.net/fs70/f/2012/207/4/9/tech_a_wallpaper_1900x1080_by_n7revenant-d58pqef.png');"></div></a>
-                <div class="carousel-caption">
-                    <h2><a class="lienCarrousel" href="/contact">Contacts</a></h2>
-                </div>
-            </div>
-            <div class="item">
-            <a href="http://www.siteduzero.com" target="_blank"> <div class="fill" style="background-image:url('http://blog.lenycom.com/wp-content/gallery/wallpaper2/1091154011.jpg');"></div></a>
-			<div class="carousel-caption">
-				<h2><a class="lienCarrousel" href="http://www.siteduzero.com">Site du zéro !</a></h2>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-
-    </div>
 
         <!-- Controls -->
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -154,7 +159,7 @@
                     <li>D'être à jour avec l'actualité.</li>
                     <li>De découvrir de nouvelles choses et domaines.</li>
                 </ul>
-                </div>
+            </div>
             <div class="col-md-6">
                 <img class="img-responsive img-circle" src="http://web2vie.com/wp-content/uploads/JNTU-EXPRESS-Welcome.jpg" alt="">
             </div>
@@ -174,8 +179,8 @@
                         <h4><i class="fa fa-fw fa-check"></i> Article 1</h4>
                     </div>
                     <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
+                        <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    </a>
                     <div class="panel-body">
                         <p>Contenu / résumé de l'article 1.</p>
                         <a href="#" class="btn btn-default">En savoir plus</a>
@@ -188,8 +193,8 @@
                         <h4><i class="fa fa-fw fa-check"></i> Article 2</h4>
                     </div>
                     <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
+                        <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    </a>
                     <div class="panel-body">
                         <p>Contenu / résumé de l'article 2.</p>
                         <a href="#" class="btn btn-default">En savoir plus</a>
@@ -202,8 +207,8 @@
                         <h4><i class="fa fa-fw fa-check"></i> Article 3</h4>
                     </div>
                     <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
+                        <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    </a>
                     <div class="panel-body">
                         <p>Contenu / résumé de l'article 3.</p>
                         <a href="#" class="btn btn-default">En savoir plus</a>
@@ -251,7 +256,7 @@
             </div>
         </div>
         
-         <!-- Footer -->
+        <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
@@ -263,21 +268,21 @@
 
         <!-- Features Section -->
         
-    <!-- /.container -->
+        <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="/static/js/jquery.js"></script>
+        <!-- jQuery -->
+        <script src="/static/js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/static/js/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
 
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
+        <!-- Script to Activate the Carousel -->
+        <script>
+        $('.carousel').carousel({
         interval: 5000 //changes the speed
     })
-    </script>
+        </script>
 
-</body>
+    </body>
 
-</html>
+    </html>
