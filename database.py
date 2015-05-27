@@ -183,6 +183,10 @@ def cat4():
 def item():
     return render_template('portfolio-item.html')
 
+@app.route('/addarticle')
+def addarticle():
+    return render_template('addarticle.html')
+
 @app.route('/logout')
 def logout():
     session.clear()
