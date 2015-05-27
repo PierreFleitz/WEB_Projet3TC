@@ -100,24 +100,46 @@ function verifForm(f)
 	var pseudoOk = verifPseudo(f.pseudo);
 	var mailOk = verifMail(f.mail);
 	var ageOk = verifAge(f.age);
-	var passwordOk = verifPassword(f.password)
+	var passwordOk = verifPassword(f.password);
+	var nameOk = verifName(f.nom);
+	var prenomOk = verifPrenom(f.prenom);
 
 	
-	if(pseudoOk && mailOk && ageOk){
-		//return true
+	if(pseudoOk && mailOk && ageOk && nameOk && prenomOk){
+		return true
 	}
 	else
 	{
 		alert("Veuillez remplir correctement tous les champs");
 		return false;
 	}
-
-	if(passwordOk){
-		return true;
-	}
-	else{
-		alert("OBUHOU");
-		return false;
-	}
 }
-		
+
+$(document).ready(function() {
+    $('#monForm').on('submit', function(e) {
+        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+ 
+        var $this = $(this);
+ 
+        var pseudo = $('#pseudo').val();
+        var mail = $('#mail').val();
+ 
+        if(pseudo === '' || mail === '') {
+            alert('Les champs doivent êtres remplis');
+        } else {
+            $.ajax({
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
+                dataType: 'json', // JSON
+                success: function(json) {
+                    if(json.reponse === 'ok') {
+                        alert('Tout est bon');
+                    } else {
+                        alert('Erreur : '+ json.reponse);
+                    }
+                }
+            });
+        }
+    });
+});

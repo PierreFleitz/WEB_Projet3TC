@@ -116,7 +116,7 @@
 		</div>
 		<!-- /.row -->
 
-		<div class="row">
+		<!--<div class="row">
 			<div class="col-xs-12">
 				{% with messages = get_flashed_messages() %}
 				{% if messages %}
@@ -137,7 +137,16 @@
 					<button type="submit" class="btn btn-primary">Sign up</button>
 				</form>
 			</div>
-		</div>
+		</div> -->
+		<form id="monForm" action="/static/js/connexion.php" method="post">
+    <label for="pseudo">Pseudo</label>
+    <input type="text" id="pseudo" name="pseudo" />
+ 
+    <label for="mail">Email</label>
+    <input type="email" id="mail" name="mail" />
+ 
+    <input type="submit" id="envoyer" value="Envoyer" />
+</form>
 
 		<hr>
 
@@ -223,10 +232,10 @@
 
 		<!-- jQuery -->
 		<script src="/static/js/jquery.js"></script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 		<!-- Login.js -->
 		<script src="/static/js/login.js"</script>
-		<script src="/static/js/envoi.js"</script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="/static/js/bootstrap.js"></script>
