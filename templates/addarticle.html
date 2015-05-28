@@ -119,23 +119,35 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3>Article :</h3>
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <form id="monForm" action="/addarticle" method="POST" class="form-inline" role="form" onsubmit="return verifForm(this)">
                         <div class="control-group form-group">
+
+                            <div class="controls">
+                                <label>Votre Mail:</label>
+                                <input type="text" class="form-control" id="mail" required data-validation-required-message="Entrez votre adresse Email.">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="control-group form-group">
+
                             <div class="controls">
                                 <label>Titre de l'article :</label>
-                                <input type="text" class="form-control" id="name_article" required data-validation-required-message="Entrez le titre de votre article.">
+                                <input type="text" class="form-control" id="nomarticle" required data-validation-required-message="Entrez le titre de votre article.">
                                 <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="control-group form-group">
                             <div class="controls">
                                 <label>Catégorie associée :</label>
-                                <input type="tel" class="form-control" id="cat_artilce" required data-validation-required-message="Entrez une catégorie associée à votre article.">
+                                <input type="tel" class="form-control" id="catearticle" required data-validation-required-message="Entrez une catégorie associée à votre article.">
                             </div>
                         <div class="control-group form-group">
                             <div class="controls">
                                 <label>Contenu de l'article :</label>
-                                <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Entrez le contenu de votre article." maxlength="10000" style="resize:none"></textarea>
+                                <textarea rows="10" cols="100" class="form-control" id="contenu" required data-validation-required-message="Entrez le contenu de votre article." maxlength="10000" style="resize:none"></textarea>
                             </div>
                         </div>
 
