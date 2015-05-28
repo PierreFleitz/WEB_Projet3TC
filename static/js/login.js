@@ -135,9 +135,8 @@ jQuery(document).ready(function() {
         			mail:$mail,
         			password:$password,
         			success: function(data) {
-        				alert("Ok");
         				window.location.replace('/index');                
-        			},
+        			}
         		}          	
         	})
         }

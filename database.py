@@ -107,7 +107,7 @@ def authentification(mail, password):
   connection = engine.connect()
   try:
         if connection.execute(select([membre.c.mail]).where(membre.c.mail == mail)).fetchone() is None:
-            print("test")
+            print("Je suis dans erreur select ")
             return False
         else:
             sel = select([membre]).where(
@@ -116,9 +116,7 @@ def authentification(mail, password):
                     membre.c.password == password
                 )
             )
-            print("done")
-            print(mail)
-            print(password)
+            print("Je suis dans select ok")
             return connection.execute(sel).fetchone() != None
         
   finally:
@@ -142,12 +140,12 @@ def index():
 def login():
   if request.method == 'POST':
     if authentification(request.form['mail'], request.form['password']): #request lit le contenu
+        print("Je suis dans ok authentification")
         session['username'] = request.form['mail']
         return redirect('/index')
     else:
         #flash('Mot de passe/login invalide ou inexistant: ' + request.form['mail'])
-        print(request.form['mail'])
-        print("toto")
+        print("Je suis dans erreur authentification")
         return abort(401)
   else:
     return render_template('login.html')
