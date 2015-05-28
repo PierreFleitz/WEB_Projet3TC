@@ -143,10 +143,11 @@ def login():
   if request.method == 'POST':
     if authentification(request.form['mail'], request.form['password']): #request lit le contenu
         session['username'] = request.form['mail']
-        return
+        return redirect('/index')
     else:
         #flash('Mot de passe/login invalide ou inexistant: ' + request.form['mail'])
         print(request.form['mail'])
+        print("toto")
         return abort(401)
   else:
     return render_template('login.html')

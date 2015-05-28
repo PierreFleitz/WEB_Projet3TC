@@ -116,34 +116,62 @@ function verifForm(f)
 }
 
 jQuery(document).ready(function() {
-    $('#monForm').on('submit', function(e) {
+	$('#monForm').on('submit', function(e) {
         e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
- 
-        var $this = $(this);
- 
-        var mail = $('#mail').val();
-        var password = $('#password').val();
- 
-        if(mail === '' || password === '') {
-            alert('Les champs doivent êtres remplis');
-        } else {
-            $.ajax({
-                url: '/login',
-                type: 'POST',
-                dataType: 'json',
-                data: 
-                	"mail="+mail+"&password="+password,
 
-                success: function() {
-                	alert("Ok");
-                	window.location.replace('/index');                   
-                },
-                error: function(){
-                	alert("Non")
-                	window.location.replace('/login')
-                }            	
-        	
-        })
-    	}
-	})
+        var $this = $(this);
+
+        var $mail = $('#mail').val();
+        var $password = $('#password').val();
+
+        if($mail === '' || $password === '') {
+        	alert('Les champs doivent êtres remplis');
+        } else {
+        	$.ajax({
+        		url: '/login',
+        		type: 'POST',
+        		dataType: 'json',
+        		data: {
+        			mail:$mail,
+        			password:$password,
+        			success: function(data) {
+        				alert("Ok");
+        				window.location.replace('/index');                
+        			},
+        		}          	
+        	})
+        }
+    })
 })
+
+/*
+$(document).ready(function() {
+	$('#monForm').on('submit', function(e) {
+        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+
+        var $this = $(this);
+
+        var password = $('#password').val();
+        var mail = $('#mail').val();
+
+        if(mail === '' || password === '') {
+        	alert('Les champs doivent êtres remplis');
+        } else {
+        	$.ajax({
+        		url: '/login',
+        		type: 'POST',
+        		data: {
+        			mail: mail,
+        			password: password,
+                	dataType: 'json', // JSON
+                	success: function() {
+                		alert("OK");
+                		window.location.replace('/index');
+                	}
+            	}
+            })
+        }
+    })
+})
+*/
+          
