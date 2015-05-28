@@ -6,6 +6,6 @@ from model import *
 
 x = connection_db() 
 
-inscription('beaubay','jib',21,'jb.beaubay@gmail.com','prout', connection=x)
+inscription('beaubay','jean-baptiste','jib',21,'jb.beaubay@gmail.com','prout', connection=x)
 
-publication('audi',12,'2015-05-20','Automobile','/home/erwan/Documents/Programmation/ProjetWEB/modele/test.jpeg', connection=x)
+publication('audi',12,'2015-05-20','Automobile','coucou fratelo', connection=x)

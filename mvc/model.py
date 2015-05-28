@@ -2,27 +2,23 @@
 from __future__ import unicode_literals
 from sqlalchemy import *
 from sqlalchemy.sql import *
-from database2 import *
+from database import *
 
 
 
 
 def connection_db():
-	engine = create_engine('sqlite:///database2.db', echo=True)
+	engine = create_engine('sqlite:///database.db', echo=True)
 	connection = engine.connect()
 	return connection
 
-def inscription(name,surname,age,mail,password, connection):
+def inscription(name,surname,pseudo,age,mail,password, connection):
 	if connection is None:
 		connection = connection_db()
-	m_ins = member.insert()
-
-	if name is None or surname is None or age is None or mail is None:
-		print'inscription failed'
-		return -1
+	m_ins = membre.insert()
 
 	
-	connection.execute(m_ins.values(Name=name,Surname=surname,Age=age,Mail=mail,Password=password))
+	connection.execute(m_ins.values(nom=name,prenom=surname,pseudo=pseudo,age=age,mail=mail,password=password))
 
 def publication(titre,idmembre,date,categorie,contenu,connection=None):
 
@@ -32,7 +28,7 @@ def publication(titre,idmembre,date,categorie,contenu,connection=None):
 	print categorie
 	print titre
 	print contenu
-	connection.execute(a_ins.values(Title=titre,idMember=idmembre,Date=date,Category=categorie,Contenu=contenu))
+	connection.execute(a_ins.values(titreArticle=titre,idMembre=idmembre,date=date,categorie=categorie,contenuArticle=contenu))
 	
 
 
