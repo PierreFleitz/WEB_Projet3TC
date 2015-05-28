@@ -143,34 +143,38 @@ jQuery(document).ready(function() {
     })
 })
 
-/*
-$(document).ready(function() {
-	$('#monForm').on('submit', function(e) {
+jQuery(document).ready(function() {
+	$('#inscription').on('submit', function(e) {
         e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
 
         var $this = $(this);
 
-        var password = $('#password').val();
-        var mail = $('#mail').val();
+        var $prenom = $('#prenom').val();
+        var $nom = $('#nom').val();
+        var $pseudo = $('#pseudo').val();
+        var $mail = $('#mail').val();
+        var $age = $('#age').val();
+        var $password = $('#password').val();
 
-        if(mail === '' || password === '') {
-        	alert('Les champs doivent êtres remplis');
-        } else {
+        /*if($mail === '' || $password === '') {
+        	alert('Les champs doivent êtres remplis inscription');
+        } else {*/
         	$.ajax({
-        		url: '/login',
+        		url: '/signup',
         		type: 'POST',
+        		dataType: 'json',
         		data: {
-        			mail: mail,
-        			password: password,
-                	dataType: 'json', // JSON
-                	success: function() {
-                		alert("OK");
-                		window.location.replace('/index');
-                	}
-            	}
-            })
-        }
+        			prenom:$prenom,
+        			nom:$nom,
+        			pseudo:$pseudo,
+        			mail:$mail,
+        			age:$age,
+        			password:$password,
+        			success: function(data) {
+        				window.location.replace('/index');                
+        			//}
+        		}          	
+        	}
+        })
     })
 })
-*/
-          

@@ -94,6 +94,7 @@ def inscription(prenom=None,nom=None,pseudo=None,age=None,mail=None,password=Non
     try:
         if  prenom != None and nom != None and pseudo != None and mail != None and password != None:
             connection.execute(membre.insert().values(prenom=prenom,nom=nom,pseudo=pseudo,age=age,mail=mail,password=password)) 
+            return True
             
         else:
             flash('Creation de compte impossible, parametres manquants')
