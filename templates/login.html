@@ -116,7 +116,7 @@
 		</div>
 		<!-- /.row -->
 
-		<!--<div class="row">
+		<!--- <div class="row">
 			<div class="col-xs-12">
 				{% with messages = get_flashed_messages() %}
 				{% if messages %}
@@ -124,8 +124,8 @@
 				<div class="alert alert-danger">{{ message }}</div>
 				{% endfor %}
 				{% endif %}
-				{% endwith %}
-				<form action="/login" method="POST" class="form-inline" role="form">
+        {% endwith %} -->
+				<form id="monForm" action="/login" method="POST" class="form-inline" role="form">
 					<div class="form-group">
 						<label class="sr-only" for="mail">Login</label>
 						<input type="text" class="form-control" name="mail" id="mail" placeholder="Enter Email">
@@ -134,11 +134,11 @@
 						<label class="sr-only" for="password">Password</label>
 						<input type="password" class="form-control" name="password" id="password" placeholder="Password">
 					</div>
-					<button type="submit" class="btn btn-primary">Sign up</button>
+					<button type="submit" class="btn btn-primary" >Sign up</button>
 				</form>
 			</div>
-		</div> -->
-		<form id="monForm" action="/static/js/connexion.php" method="post">
+		</div>
+		<!---<form id="monForm" action="/database.py" method="post">
     <label for="pseudo">Pseudo</label>
     <input type="text" id="pseudo" name="pseudo" />
  
@@ -146,7 +146,7 @@
     <input type="email" id="mail" name="mail" />
  
     <input type="submit" id="envoyer" value="Envoyer" />
-</form>
+        </form> --->
 
 		<hr>
 

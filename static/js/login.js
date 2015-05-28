@@ -121,10 +121,10 @@ $(document).ready(function() {
  
         var $this = $(this);
  
-        var pseudo = $('#pseudo').val();
         var mail = $('#mail').val();
+        var password = $('#password').val();
  
-        if(pseudo === '' || mail === '') {
+        if(mail === '' || password === '') {
             alert('Les champs doivent êtres remplis');
         } else {
             $.ajax({
