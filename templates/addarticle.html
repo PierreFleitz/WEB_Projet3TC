@@ -120,8 +120,7 @@
                 <div class="col-md-8">
                     <h3>Article :</h3>
                     <form id="monForm" action="/addarticle" method="POST" class="form-inline" role="form" onsubmit="return verifForm(this)">
-                        <div class="control-group form-group">
-
+                        <div class="form-group">
                             <div class="controls">
                                 <label>Votre Mail:</label>
                                 <input type="text" class="form-control" id="mail" required data-validation-required-message="Entrez votre adresse Email.">
@@ -139,11 +138,14 @@
                                 <p class="help-block"></p>
                             </div>
                         </div>
+                        <hr>
                         <div class="control-group form-group">
                             <div class="controls">
                                 <label>Catégorie associée :</label>
                                 <input type="tel" class="form-control" id="catearticle" required data-validation-required-message="Entrez une catégorie associée à votre article.">
                             </div>
+                        </div>
+                        <hr>
                         <div class="control-group form-group">
                             <div class="controls">
                                 <label>Contenu de l'article :</label>
@@ -151,45 +153,41 @@
                             </div>
                         </div>
 
-                        <form method="post" action="page.php" enctype="multipart/form-data">
-                        <input type="file" name="nom" />
-
-                        <hr>
-
-                        <div id="success"></div>
-                        <!-- For success/fail messages -->
-                        <button type="submit" class="btn btn-primary">Envoyé l'article</button>
+                            
+                                <button type="submit" class="btn btn-primary">Envoyé l'article</button>
+                            
+                        </div>
                     </form>
-                </div>
 
+                </div>
             </div>
-            <!-- /.row -->
+                    <!-- /.row -->
 
-            <hr>
+                    <hr>
 
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright FeBB&copy; Magazine 2015, INSA de Lyon</p>
-                    </div>
+                    <!-- Footer -->
+                    <footer>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>Copyright FeBB&copy; Magazine 2015, INSA de Lyon</p>
+                            </div>
+                        </div>
+                    </footer>
+
                 </div>
-            </footer>
+                <!-- /.container -->
 
-        </div>
-        <!-- /.container -->
+                <!-- jQuery -->
+                <script src="/static/js/jquery.js"></script>
 
-        <!-- jQuery -->
-        <script src="/static/js/jquery.js"></script>
+                <!-- Bootstrap Core JavaScript -->
+                <script src="/static/js/bootstrap.min.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="/static/js/bootstrap.min.js"></script>
+                <!-- Contact Form JavaScript -->
+                <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+                <script src="/static/js/jqBootstrapValidation.js"></script>
+                <script src="/static/js/contact_me.js"></script>
 
-        <!-- Contact Form JavaScript -->
-        <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-        <script src="/static/js/jqBootstrapValidation.js"></script>
-        <script src="/static/js/contact_me.js"></script>
+            </body>
 
-    </body>
-
-    </html>
+            </html>

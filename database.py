@@ -72,21 +72,18 @@ def hash_for(password):
 #Definition contenu article
 def publication(mail,nomarticle,catearticle,contenu):
     connection=engine.connect()
-try:
+    try:
         if connection.execute(select([membre.c.idMembre]).where(membre.c.mail == mail)).fetchone() is None:
             return False
 
         else:
-            sel = select([membre.c.idMembre]).where(
-                (
-                    membre.c.mail == mail
-                )
-            )
+            sel = select([membre.c.idMembre]).where( membre.c.mail == mail)
             a_ins = article.insert()
             connection.execute(a_ins.values(nomarticle=titre,idMembre=sel,date=None,catearticle=categorie,contenu=contenu))
             return True
-finally:
-    connection.close()
+
+    finally:
+        connection.close()
 
 
 
@@ -97,7 +94,7 @@ def inscription(prenom=None,nom=None,pseudo=None,age=None,mail=None,password=Non
     try:
         if  prenom != None and nom != None and pseudo != None and mail != None and password != None:
             connection.execute(membre.insert().values(prenom=prenom,nom=nom,pseudo=pseudo,age=age,mail=mail,password=password)) 
-            return True
+            
         else:
             flash('Creation de compte impossible, parametres manquants')
             return False
@@ -167,10 +164,11 @@ def signup():
     flash('Erreur lors de la creation du compte')
     return render_template('login.html')
 
+
 @app.route('/addarticle', methods=['GET', 'POST'])
 def addarticle():
   if request.method == 'POST':
-    if publication(request.form['mail'],request.form['nomarticle'],request.form['catearticle'],request.form['contenu']): #request lit le contenu
+    if publication(request.form['mail'],request.form['nomarticle'],request.form['catearticle'],request.form['contenu']): 
        return redirect('/index' )
 
   else:
@@ -214,9 +212,6 @@ def cat4():
 def item():
     return render_template('portfolio-item.html')
 
-@app.route('/addarticle')
-def addarticle():
-    return render_template('addarticle.html')
 
 @app.route('/logout')
 def logout():
