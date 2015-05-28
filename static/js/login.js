@@ -102,7 +102,7 @@ function verifForm(f)
 	var ageOk = verifAge(f.age);
 	var passwordOk = verifPassword(f.password);
 	var nameOk = verifName(f.nom);
-	var prenomOk = verifPrenom(f.prenom);
+	var prenomOk = verifName(f.prenom);
 
 	
 	if(pseudoOk && mailOk && ageOk && nameOk && prenomOk){

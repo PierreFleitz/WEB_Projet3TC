@@ -84,8 +84,8 @@
                                 </ul>
                             </li>
                             <li>
-                                {% if 'username' in session %}
-                                <a href="/logout">Déco </a>
+                                {% if 'username' in session %}                                                                                            
+                                <a href="/logout">Déco {{ session.username}}</a>
                                 {% else%}
                                 <a href="/login">Se connecter</a>
                                 {% endif%}
