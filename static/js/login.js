@@ -130,17 +130,20 @@ jQuery(document).ready(function() {
             $.ajax({
                 url: '/login',
                 type: 'POST',
-                data: {
-                	mail: mail,
-                	password: password,
-                
-                dataType: 'json', // JSON
-                success: function(data) {
-                	alert('OK');
+                dataType: 'json',
+                data: 
+                	"mail="+mail+"&password="+password,
+
+                success: function() {
+                	alert("Ok");
                 	window.location.replace('/index');                   
-                }
+                },
+                error: function(){
+                	alert("Non")
+                	window.location.replace('/login')
                 }            	
-        	})
+        	
+        })
     	}
 	})
 })
