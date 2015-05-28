@@ -2,10 +2,10 @@ function surligne(champ, erreur)
 {
 	if(erreur)
 		champ.style.border = "2px solid #f00",
-	champ.style.backgroundColor = "#fba";
+		champ.style.backgroundColor = "#fba";
 	else
 		champ.style.border = "2px solid #00FF00",
-	champ.style.backgroundColor = "#B0F2B6";
+		champ.style.backgroundColor = "#B0F2B6";
 }
 
 function verifPseudo(champ)
@@ -20,10 +20,10 @@ function verifPseudo(champ)
 	else
 	{
 		document.getElementById('validPseudo').innerHTML = "	Ce pseudo est valide ;)";
-document.getElementById('erreurPseudo').innerHTML = "";
-surligne(champ, false);
-return true;
-}
+		document.getElementById('erreurPseudo').innerHTML = "";
+		surligne(champ, false);
+		return true;
+	}
 }
 
 function verifName(champ)
@@ -57,29 +57,29 @@ function verifMail(champ)
 	else
 	{
 		document.getElementById('validMail').innerHTML = "	Ce mail est valide ;)";
-document.getElementById('erreurMail').innerHTML = "";
-surligne(champ, false);
-return true;
-}
-}
-
-function verifAge(champ)
-{
-	var age = parseInt(champ.value);
-	if(isNaN(age) || age < 5 || age > 111)
-	{
-		document.getElementById('erreurAge').innerHTML = "	Impressionnant comme âge !"
-		surligne(champ, true);
-		return false;
-	}
-	else
-	{
-		document.getElementById('erreurAge').innerHTML ="";
+		document.getElementById('erreurMail').innerHTML = "";
 		surligne(champ, false);
 		return true;
 	}
 }
 
+function verifAge(champ)
+	{
+		var age = parseInt(champ.value);
+		if(isNaN(age) || age < 5 || age > 111)
+		{
+			document.getElementById('erreurAge').innerHTML = "	Impressionnant comme âge !"
+			surligne(champ, true);
+			return false;
+		}
+		else
+		{
+			document.getElementById('erreurAge').innerHTML ="";
+			surligne(champ, false);
+			return true;
+		}
+	}
+	
 function verifPassword(champ) {
 	if(champ.value.length < 5 ) {
 		document.getElementById('erreurPassword').innerHTML = "	Le mot de passe doit être supérieur à 5 caractères !"
@@ -115,38 +115,32 @@ function verifForm(f)
 	}
 }
 
-$(document).ready(function() {
-	$('#monForm').on('submit', function(e) {
+jQuery(document).ready(function() {
+    $('#monForm').on('submit', function(e) {
         e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
-
+ 
         var $this = $(this);
-
+ 
         var mail = $('#mail').val();
         var password = $('#password').val();
-
+ 
         if(mail === '' || password === '') {
-        	alert('Les champs doivent êtres remplis');
+            alert('Les champs doivent êtres remplis');
         } else {
-        	$.ajax({
-        		url: '/login',
-        		type: 'POST',
-        		data: {
-        			mail: mail,
-        			password: password,
-        		},
+            $.ajax({
+                url: '/login',
+                type: 'POST',
+                data: {
+                	mail: mail,
+                	password: password,
+                
                 dataType: 'json', // JSON
-                success: function() {
-                	$.ajax({
-                		dataType: "json",
-                		url: url,
-                		data: {
-                			url: json,
-                		}
-                		success: success
-                	});
+                success: function(data) {
+                	alert('OK');
+                	window.location.replace('/index');                   
                 }
-            })
-        });
-            
-    });
-});
+                }            	
+        	})
+    	}
+	})
+})

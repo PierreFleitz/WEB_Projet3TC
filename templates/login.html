@@ -116,7 +116,7 @@
        </div>
        <!-- /.row -->
 
-       <div class="row">
+       <!--<div class="row">
          <div class="col-xs-12">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -124,7 +124,7 @@
             <div class="alert alert-danger">{{ message }}</div>
             {% endfor %}
             {% endif %}
-            {% endwith %} 
+            {% endwith %} -->
             <form id="monForm" action="/login" method="POST" class="form-inline" role="form">
                <div class="form-group">
                   <label class="sr-only" for="mail">Login</label>
@@ -152,7 +152,7 @@
       </div>
   </div>
 
-  <form action="/signup" method="POST" class="form-inline" role="form" onsubmit="return verifForm(this)">
+  <form id="monForm" action="/signup" method="POST" class="form-inline" role="form" onsubmit="return verifForm(this)">
     <div class="form-group">
        <label class="sr-only" for="Prénom">Prénom</label>
        <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" onBlur="verifName(this)" required>
