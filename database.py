@@ -71,13 +71,13 @@ def hash_for(password):
     return hashlib.sha256(salted).hexdigest()
 
 #Definition contenu article
-def publication(pseudo,nomarticle,catearticle,contenu):
+def publication(nomarticle,catearticle,contenu):
     connection=engine.connect()
     try:
-        if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
-            return False
+         #if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
+             #return False
 
-        else:
+        #else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
             a_ins = article.insert()
             connection.execute(a_ins.values(nomarticle=titre,idMembre=sel,date=None,catearticle=categorie,contenu=contenu))
@@ -125,14 +125,14 @@ def authentification(pseudo, password):
     connection.close() 
 
 #Affichage des meilleurs articles pour item
-def getPseudo(mail):
+def getMail(pseudo):
     connection=engine.connect()
     try:
-        if connection.execute(select([membre.c.prenom]).where(membre.c.mail==mail)).fetchone() is None:
+        if connection.execute(select([membre.c.mail]).where(membre.c.pseudo==pseudo)).fetchone() is None:
             return False
 
         else:
-            sel=select([membre.c.prenom]).where(membre.c.mail==mail)
+            sel=select([membre.c.mail]).where(membre.c.pseudo==pseudo)
             return sel
 
     finally:
@@ -155,11 +155,12 @@ def login():
     if authentification(request.form['pseudo1'], request.form['password1']): #request lit le contenu
         print("Je suis dans ok authentification")
         session['username'] =request.form['pseudo1']
-        return redirect('/index')
+        #session['mail']= json.dumps(session['u'])
+        return json.dumps('success');
     else:
         flash('Mot de passe/login invalide ou inexistant: ' + request.form['pseudo1'])
         print("Je suis dans erreur authentification")
-        return redirect('/login')
+        return json.dumps('error');
   else:
     return render_template('login.html')
 
@@ -170,21 +171,24 @@ def signup():
   if request.method == 'POST':
     if inscription(request.form['prenom'],request.form['nom'],request.form['pseudo'],request.form['age'],request.form['mail'], request.form['password']): #request lit le contenu
         session['username'] = request.form['pseudo']
-        return redirect('/index' )
-    
-  else:
-    flash('Erreur lors de la creation du compte')
+
+        return json.dumps('success');
+    else:
+        return json.dumps('error');
+  else: 
     return render_template('login.html')
+
 
 
 @app.route('/addarticle', methods=['GET', 'POST'])
 def addarticle():
   if request.method == 'POST':
-    if publication(session['username'],request.form['nomarticle'],request.form['catearticle'],request.form['contenu']): 
-       return redirect('/index' )
+    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu']): 
+       return json.dumps('success');
+    else:
+        return json.dumps('error');
 
-  else:
-    flash('Erreur lors de la creation du compte') 
+  else: 
     return render_template('addarticle.html')
 
 

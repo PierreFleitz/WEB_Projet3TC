@@ -133,16 +133,22 @@ jQuery(document).ready(function() {
         		dataType: 'json',
         		data: {
         			pseudo1:$pseudo1,
-        			password1:$password1,
-        			success: function(data) {
-        				alert(data);
-        				window.location.replace('/addarticle');                
-        			}
-        		}          	
-        	})
-        }
+        			password1:$password1
+        		},
+        			success: function(response) {
+                console.log(response);
+                if(response == 'error') {
+                	document.getElementById('erreurLogin').innerHTML = "Le mot de passe ou le login est incorrect";
+                }
+                else {
+                	console.log("Bien connecté")
+                	window.location.replace('/index');
+                }
+            }
+        		})          	
+        	}
+        })
     })
-})
 
 jQuery(document).ready(function() {
 	$('#inscription').on('submit', function(e) {
@@ -170,13 +176,19 @@ jQuery(document).ready(function() {
         			pseudo:$pseudo,
         			mail:$mail,
         			age:$age,
-        			password:$password,
-        			success: function(data) {
-        				alert(data);
-        				window.location.replace('/index');
-        			} 	
-        	}
-        })
+        			password:$password
+        		},
+        			success: function(response) {
+                console.log(response);
+                if(response == 'error') {
+                	document.getElementById('erreurLogin').innerHTML = "Problème de post en inscription";
+                }
+                else {
+                	console.log("Bien connecté")
+                	window.location.replace('/index');
+                }
+            }
+        		}) 
     })
 })
 
@@ -200,13 +212,18 @@ jQuery(document).ready(function() {
         		data: {
         			nomarticle:$nomarticle,
         			catearticle:$catearticle,
-        			contenu:$contenu,
-        			
-        			success: function(data) {
-        				window.location.replace('/index');                
-        			//}
-        		}          	
-        	}
-        })
+        			contenu:$contenu
+        		},
+        			success: function(response) {
+                console.log(response);
+                if(response == 'error') {
+                	document.getElementById('erreurarticle').innerHTML = "On verra";
+                }
+                else {
+                	console.log("Bien connecté")
+                	window.location.replace('/index');
+                }
+            }
+        		}) 
     })
 })
