@@ -124,6 +124,18 @@ def authentification(mail, password):
     connection.close() 
 
 #Affichage des meilleurs articles pour item
+def getPseudo(mail):
+    connection=engine.connect()
+    try:
+        if connection.execute(select([membre.c.pseudo]).where(membre.c.mail==mail)).fetchone() is None:
+            return False
+
+        else:
+            sel=select([membre.c.pseudo]).where(membre.c.mail==mail)
+            return sel
+
+    finally:
+        connection.close()
 
 
 
