@@ -71,14 +71,14 @@ def hash_for(password):
     return hashlib.sha256(salted).hexdigest()
 
 #Definition contenu article
-def publication(mail,nomarticle,catearticle,contenu):
+def publication(pseudo,nomarticle,catearticle,contenu):
     connection=engine.connect()
     try:
-        if connection.execute(select([membre.c.idMembre]).where(membre.c.mail == mail)).fetchone() is None:
+        if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
             return False
 
         else:
-            sel = select([membre.c.idMembre]).where( membre.c.mail == mail)
+            sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
             a_ins = article.insert()
             connection.execute(a_ins.values(nomarticle=titre,idMembre=sel,date=None,catearticle=categorie,contenu=contenu))
             return True
@@ -157,9 +157,9 @@ def login():
         session['username'] =request.form['pseudo1']
         return redirect('/index')
     else:
-        #flash('Mot de passe/login invalide ou inexistant: ' + request.form['mail'])
+        flash('Mot de passe/login invalide ou inexistant: ' + request.form['pseudo1'])
         print("Je suis dans erreur authentification")
-        return abort(403)
+        return redirect('/login')
   else:
     return render_template('login.html')
 
@@ -180,7 +180,7 @@ def signup():
 @app.route('/addarticle', methods=['GET', 'POST'])
 def addarticle():
   if request.method == 'POST':
-    if publication(request.form['mail'],request.form['nomarticle'],request.form['catearticle'],request.form['contenu']): 
+    if publication(session['username'],request.form['nomarticle'],request.form['catearticle'],request.form['contenu']): 
        return redirect('/index' )
 
   else:

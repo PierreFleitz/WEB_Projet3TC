@@ -135,7 +135,8 @@ jQuery(document).ready(function() {
         			pseudo1:$pseudo1,
         			password1:$password1,
         			success: function(data) {
-        				window.location.replace('/index');                
+        				alert(data);
+        				window.location.replace('/addarticle');                
         			}
         		}          	
         	})
@@ -171,6 +172,37 @@ jQuery(document).ready(function() {
         			age:$age,
         			password:$password,
         			success: function(data) {
+        				alert(data);
+        				window.location.replace('/index');
+        			} 	
+        	}
+        })
+    })
+})
+
+jQuery(document).ready(function() {
+	$('#addArticle').on('submit', function(e) {
+        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+
+        var $this = $(this);
+
+        var $nomarticle= $('#nomarticle').val();
+        var $catearticle = $('#catearticle').val();
+        var $contenu = $('#contenu').val();
+        
+        /*if($mail === '' || $password === '') {
+        	alert('Les champs doivent êtres remplis inscription');
+        } else {*/
+        	$.ajax({
+        		url: '/addarticle',
+        		type: 'POST',
+        		dataType: 'json',
+        		data: {
+        			nomarticle:$nomarticle,
+        			catearticle:$catearticle,
+        			contenu:$contenu,
+        			
+        			success: function(data) {
         				window.location.replace('/index');                
         			//}
         		}          	
@@ -178,4 +210,3 @@ jQuery(document).ready(function() {
         })
     })
 })
-

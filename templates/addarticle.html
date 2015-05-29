@@ -124,17 +124,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3>Article :</h3>
-                    <form id="monForm" action="/addarticle" method="POST" class="form-inline" role="form" onsubmit="return verifForm(this)">
-                        <div class="form-group">
-                            <div class="controls">
-                                <label>Votre Mail:</label>
-                                <input type="text" class="form-control" id="mail" required data-validation-required-message="Entrez votre adresse Email.">
-                                <p class="help-block"></p>
-                            </div>
-                        </div>
-
-                        <hr>
-
+                    <form id="addArticle" action="/addarticle" method="POST" class="form-inline" role="form">
                         <div class="control-group form-group">
 
                             <div class="controls">
@@ -191,7 +181,6 @@
                 <!-- Contact Form JavaScript -->
                 <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
                 <script src="/static/js/jqBootstrapValidation.js"></script>
-                <script src="/static/js/contact_me.js"></script>
 
             </body>
 
