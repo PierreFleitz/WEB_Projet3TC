@@ -46,8 +46,9 @@
                          <a class="navbar-brand-crayon" href="/index"><img src="/static/home1.png"></a>
                         {% if 'username' in session %}                                                                                            
                             <a class="navbar-brand-crayon" href="/addarticle"><img src="/static/crayon2.png"></a>
-                                {% else%}
-                               
+                                {% else%}                             
+                            <a tabindex="0" class="navbar-brand-crayon" role="button" data-toggle="popover" data-trigger="focus" title="Merci de bien vouloir vous connecter pour écrire un article. " data-content="Merci !"><img src="/static/crayon2.png"></a>
+
                                 {% endif%}
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -89,7 +90,7 @@
                             </li>
                             <li>
                                 {% if 'username' in session %}                                                                                            
-                                <a href="/logout">Déco {{ session.username}}</a>
+                                <a href="/logout">Déconnection <strong>{{ session.username}}</strong></a>
                                 {% else%}
                                 <a href="/login">Se connecter</a>
                                 {% endif%}
@@ -149,14 +150,39 @@
     </header>
 
     <!-- Page Content -->
-    <div class="container">
+
+     {% if 'username' in session %}
+
+     <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Bonjour {{ session.username }} </h2>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Tu as {{ session.article }} articles écrits</strong></p>
+                <ul>
+                    <li>Tes articles ont été lus {{ session.nombre_vues }} fois.</li>
+                    <li>Tu as {{ session.fans }} fans.</li>
+                    <li>Et d'autres</li>
+                    <li>D'épanouir son plaisir de lecture.</li>
+                    <li>D'être à jour avec l'actualité.</li>
+                    <li>De découvrir de nouvelles choses et domaines.</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <img class="img-responsive img-circle" src="http://www.celeste.fr/images/stories/images/web/monde-connecte.png" alt="">
+            </div>
+        </div>       
+        {% else%}
+        <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">FeBB Magazine : </h2>
             </div>
             <div class="col-md-6">
-                <p><strong>FeBB c'est l'opportunité de :</strong></p>
+                <p><strong>Bonjour chère visiteur, FeBB c'est l'opportunité de :</strong></p>
                 <ul>
                     <li>Publier des articles.</li>
                     <li>Se faire connaître et reconnaître pour son travail.</li>
@@ -170,7 +196,7 @@
                 <img class="img-responsive img-circle" src="http://web2vie.com/wp-content/uploads/JNTU-EXPRESS-Welcome.jpg" alt="">
             </div>
         </div>
-        <!-- /.row -->
+        {% endif%}
 
         <!-- Marketing Icons Section -->
         <div class="row">
@@ -278,7 +304,6 @@
 
         <!-- jQuery -->
         <script src="/static/js/jquery.js"></script>
-
         <!-- Bootstrap Core JavaScript -->
         <script src="/static/js/bootstrap.min.js"></script>
 

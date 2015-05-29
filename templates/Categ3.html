@@ -44,7 +44,12 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand-crayon" href="/index"><img src="/static/home1.png"></a>
-                        <a class="navbar-brand-crayon" href="/addarticle"><img src="/static/crayon2.png"></a>
+                        {% if 'username' in session %}                                                                                            
+                            <a class="navbar-brand-crayon" href="/addarticle"><img src="/static/crayon2.png"></a>
+                                {% else%}                             
+                            <a tabindex="0" class="navbar-brand-crayon" role="button" data-toggle="popover" data-trigger="focus" title="Merci de bien vouloir vous connecter pour écrire un article. " data-content="Merci !"><img src="/static/crayon2.png"></a>
+
+                                {% endif%}
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

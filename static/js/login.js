@@ -121,10 +121,10 @@ jQuery(document).ready(function() {
 
         var $this = $(this);
 
-        var $mail = $('#mail').val();
-        var $password = $('#password').val();
+        var $pseudo1 = $('#pseudo1').val();
+        var $password1 = $('#password1').val();
 
-        if($mail === '' || $password === '') {
+        if($pseudo1 === '' || $password1 === '') {
         	alert('Les champs doivent êtres remplis');
         } else {
         	$.ajax({
@@ -132,8 +132,8 @@ jQuery(document).ready(function() {
         		type: 'POST',
         		dataType: 'json',
         		data: {
-        			mail:$mail,
-        			password:$password,
+        			pseudo1:$pseudo1,
+        			password1:$password1,
         			success: function(data) {
         				window.location.replace('/index');                
         			}
@@ -178,3 +178,4 @@ jQuery(document).ready(function() {
         })
     })
 })
+

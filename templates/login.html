@@ -44,7 +44,12 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand-crayon" href="/index"><img src="/static/home1.png"></a>
-                        <a class="navbar-brand-crayon" href="/addarticle"><img src="/static/crayon2.png"></a>
+                        {% if 'username' in session %}                                                                                            
+                            <a class="navbar-brand-crayon" href="/addarticle"><img src="/static/crayon2.png"></a>
+                                {% else%}                             
+                            <a tabindex="0" class="navbar-brand-crayon" role="button" data-toggle="popover" data-trigger="focus" title="Merci de bien vouloir vous connecter pour écrire un article. " data-content="Merci !"><img src="/static/crayon2.png"></a>
+
+                                {% endif%}
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -127,12 +132,12 @@
             {% endwith %} -->
             <form id="monForm" action="/login" method="POST" class="form-inline" role="form">
                <div class="form-group">
-                  <label class="sr-only" for="mail">Login</label>
-                  <input type="text" class="form-control" name="mail" id="mail" placeholder="Enter Email">
+                  <label class="sr-only" for="pseudo1">Login</label>
+                  <input type="text" class="form-control" name="pseudo1" id="pseudo1" placeholder="Enter Pseudo">
               </div>
               <div class="form-group">
                   <label class="sr-only" for="password">Password</label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                  <input type="password" class="form-control" name="password1" id="password1" placeholder="Password">
               </div>
               <button type="submit" class="btn btn-primary" >Sign up</button>
           </form>

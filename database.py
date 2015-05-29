@@ -5,7 +5,8 @@ from sqlalchemy import *
 from sqlalchemy.sql import *
 from flask  import *
 from markdown import markdown
-import os, hashlib
+import os, hashlib, json
+from json import *
 
 # ............................................................................................... #
 
@@ -104,16 +105,16 @@ def inscription(prenom=None,nom=None,pseudo=None,age=None,mail=None,password=Non
         connection.close()
 
 #Identification ou creation formulaire
-def authentification(mail, password):
+def authentification(pseudo, password):
   connection = engine.connect()
   try:
-        if connection.execute(select([membre.c.mail]).where(membre.c.mail == mail)).fetchone() is None:
+        if connection.execute(select([membre.c.pseudo]).where(membre.c.pseudo == pseudo)).fetchone() is None:
             print("Je suis dans erreur select ")
             return False
         else:
             sel = select([membre]).where(
                 and_(
-                    membre.c.mail == mail,
+                    membre.c.pseudo == pseudo,
                     membre.c.password == password
                 )
             )
@@ -127,16 +128,15 @@ def authentification(mail, password):
 def getPseudo(mail):
     connection=engine.connect()
     try:
-        if connection.execute(select([membre.c.pseudo]).where(membre.c.mail==mail)).fetchone() is None:
+        if connection.execute(select([membre.c.prenom]).where(membre.c.mail==mail)).fetchone() is None:
             return False
 
         else:
-            sel=select([membre.c.pseudo]).where(membre.c.mail==mail)
+            sel=select([membre.c.prenom]).where(membre.c.mail==mail)
             return sel
 
     finally:
         connection.close()
-
 
 
 #.....................................................................................................................
@@ -152,14 +152,14 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   if request.method == 'POST':
-    if authentification(request.form['mail'], request.form['password']): #request lit le contenu
+    if authentification(request.form['pseudo1'], request.form['password1']): #request lit le contenu
         print("Je suis dans ok authentification")
-        session['username'] = request.form['mail']
+        session['username'] =request.form['pseudo1']
         return redirect('/index')
     else:
         #flash('Mot de passe/login invalide ou inexistant: ' + request.form['mail'])
         print("Je suis dans erreur authentification")
-        return abort(401)
+        return abort(403)
   else:
     return render_template('login.html')
 
@@ -235,26 +235,6 @@ def logout():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# ............................................................................................... #
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                             
+# ............................................................................................... #      
                                                  
 
