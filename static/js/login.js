@@ -1,3 +1,9 @@
+var prenomglob;
+var nomglob;
+var pseudoglob;
+var mailglob;
+var ageglob;
+
 function surligne(champ, erreur)
 {
 	if(erreur)
@@ -115,6 +121,23 @@ function verifForm(f)
 	}
 }
 
+function afficheprenom() {
+    //window.document.write(prenomglob); 
+    console.log("Affichage pseudo"+ prenomglob + mailglob + pseudoglob)
+}
+function affichernom(){
+    document.write(nomglob);
+}
+function afficherpseudo() {
+    document.write(pseudoglob);
+}
+function affichermail() {
+    document.write(mailglob);
+}
+function afficherage() {
+    document.write(ageglob);
+}
+
 jQuery(document).ready(function() {
 	$('#monForm').on('submit', function(e) {
         e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
@@ -141,7 +164,14 @@ jQuery(document).ready(function() {
                 	document.getElementById('erreurLogin').innerHTML = "Le mot de passe ou le login est incorrect";
                 }
                 else {
-                	console.log("Bien connecté")
+                    //prenomglob=response['prenom'];
+                    nomglob= response ['nom'];
+                    //pseudoglob = response['pseudo'];
+                    mailglob = response ['mail'];
+                    ageglob = response ['age'];
+                    prenomglob=localStorage.getItem('plouf plouf');
+                    localStorage.setItem("pseudoglob",response['pseudo']);
+                    console.log(prenomglob + "kvof" + pseudoglob + mailglob);
                 	window.location.replace('/index');
                 }
             }
@@ -220,7 +250,7 @@ jQuery(document).ready(function() {
                 	document.getElementById('erreurarticle').innerHTML = "On verra";
                 }
                 else {
-                	console.log("Bien connecté")
+                	console.log("Bien envoyé")
                 	window.location.replace('/index');
                 }
             }
