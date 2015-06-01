@@ -135,7 +135,7 @@ def authentification(pseudo, password):
     # else :
         # return redirect('/')
 
-def retrieveProfile( pseudo, password) :
+def retrieveProfile( pseudo )  :
     db = engine.connect()
     try:
         if db.execute(select([membre.c.pseudo]).where(membre.c.pseudo == pseudo)).fetchone() != None:
@@ -165,8 +165,12 @@ def login():
     if authentification(request.form['pseudo1'], request.form['password1']): #request lit le contenu
         print("Je suis dans ok authentification")
         session['username'] = request.form['pseudo1']
-        res = retrieveProfile ( request.form['pseudo1'], request.form['password1'])
-        print (res)
+        res = retrieveProfile ( request.form['pseudo1'])
+        session['nom'] = res[0]
+        session['prenom'] = res[1]
+        session['mail'] = res[2]
+        session['age'] = res[3]
+        session['pseudo'] = res[4]
         return json.dumps({'nom':res[0],'prenom':res[1],'mail':res[2],'age':res[3], 'pseudo':res[4]})
     else:
         flash('Mot de passe/login invalide ou inexistant: ' + request.form['pseudo1'])
