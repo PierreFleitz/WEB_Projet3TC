@@ -71,16 +71,17 @@ def hash_for(password):
     return hashlib.sha256(salted).hexdigest()
 
 #Definition contenu article
-def publication(nomarticle,catearticle,contenu):
+def publication(nomarticle,catearticle,contenu,pseudo):
     connection=engine.connect()
     try:
-         #if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
-             #return False
+        if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
+             return False
 
-        #else:
+        else:
+            printf("WOUF WOUF")
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
             a_ins = article.insert()
-            connection.execute(a_ins.values(nomarticle=titre,idMembre=sel,date=None,catearticle=categorie,contenu=contenu))
+            connection.execute(a_ins.values(titreArticle=nomarticle,idMembre=sel,date=None,categorie=catearticle,contenuArticle=contenu))
             return True
 
     finally:
@@ -164,8 +165,8 @@ def login():
   if request.method == 'POST':
     if authentification(request.form['pseudo1'], request.form['password1']): #request lit le contenu
         print("Je suis dans ok authentification")
-        session['username'] = request.form['pseudo1']
         res = retrieveProfile ( request.form['pseudo1'])
+        session['username'] = request.form['pseudo1']
         session['nom'] = res[0]
         session['prenom'] = res[1]
         session['mail'] = res[2]
@@ -186,6 +187,13 @@ def signup():
   if request.method == 'POST':
     if inscription(request.form['prenom'],request.form['nom'],request.form['pseudo'],request.form['age'],request.form['mail'], request.form['password']): #request lit le contenu
         session['username'] = request.form['pseudo']
+        retrieveProfile(request.form['pseudo'])
+        session['username'] = request.form['pseudo1']
+        session['nom'] = res[0]
+        session['prenom'] = res[1]
+        session['mail'] = res[2]
+        session['age'] = res[3]
+        session['pseudo'] = res[4]
 
         return json.dumps('success');
     else:
@@ -198,7 +206,7 @@ def signup():
 @app.route('/addarticle', methods=['GET', 'POST'])
 def addarticle():
   if request.method == 'POST':
-    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu']): 
+    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu'],session['pseudo']): 
        return json.dumps('success');
     else:
         return json.dumps('error');

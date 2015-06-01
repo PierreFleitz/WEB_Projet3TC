@@ -164,14 +164,14 @@ jQuery(document).ready(function() {
                 	document.getElementById('erreurLogin').innerHTML = "Le mot de passe ou le login est incorrect";
                 }
                 else {
-                    //prenomglob=response['prenom'];
+                    /* //prenomglob=response['prenom'];
                     nomglob= response ['nom'];
                     //pseudoglob = response['pseudo'];
                     mailglob = response ['mail'];
                     ageglob = response ['age'];
                     prenomglob=localStorage.getItem("plouf plouf");
                     localStorage.setItem("pseudoglob",response['pseudo']);
-                    console.log(prenomglob + "kvof" + pseudoglob + mailglob);
+                    console.log(prenomglob + "kvof" + pseudoglob + mailglob); */
                 	window.location.replace('/index');
                 }
             }
@@ -231,10 +231,7 @@ jQuery(document).ready(function() {
         var $nomarticle= $('#nomarticle').val();
         var $catearticle = $('#catearticle').val();
         var $contenu = $('#contenu').val();
-        
-        /*if($mail === '' || $password === '') {
-        	alert('Les champs doivent êtres remplis inscription');
-        } else {*/
+            console.log("WOUF WOUF");
         	$.ajax({
         		url: '/addarticle',
         		type: 'POST',
@@ -252,6 +249,7 @@ jQuery(document).ready(function() {
                 else {
                 	console.log("Bien envoyé")
                 	window.location.replace('/index');
+                    alert("Document bien posté");
                 }
             }
         		}) 
