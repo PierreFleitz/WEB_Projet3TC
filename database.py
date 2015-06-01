@@ -235,12 +235,12 @@ def contact():
 def error():
     return render_template('404.html')
 
+@app.route('/team')
+def team():
+    return render_template('team.html')
+
 @app.route('/about')
 def about():
-    return render_template('about.html')
-
-@app.route('/faq')
-def faq():
     return render_template('faq.html')
 
 @app.route('/cat1')
