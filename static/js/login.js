@@ -247,7 +247,7 @@ jQuery(document).ready(function() {
                 }
                 else {
                 	console.log("Bien envoyé")
-                	window.location.replace('/index');
+                	window.location.replace('/item');
                     alert("Document bien posté");
                 }
             }
@@ -272,7 +272,7 @@ jQuery(document).ready(function() {
                 	document.getElementById('erreurarticle').innerHTML = "On verra";
                 }
                 else {
-                	document.getElementById('erreurarticle').innerHTML = "On ;
+                	document.getElementById('erreurarticle').innerHTML = "On" ;
                 	window.location.replace('/index');
                     alert("Document bien posté");
                 }
