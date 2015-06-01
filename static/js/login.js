@@ -254,3 +254,29 @@ jQuery(document).ready(function() {
         		}) 
     })
 })
+
+jQuery(document).ready(function() {
+	$('#getarticle').on('load', function(e) {
+        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+
+        var $this = $(this);
+
+        	$.ajax({
+        		url: '/item',
+        		type: 'GET',
+        		dataType: 'json',
+                timeout:3000,
+        		success: function(response) {
+                    console.log(response);
+                if(response == 'error') {
+                	document.getElementById('erreurarticle').innerHTML = "On verra";
+                }
+                else {
+                	document.getElementById('erreurarticle').innerHTML = "On ;
+                	window.location.replace('/index');
+                    alert("Document bien posté");
+                }
+            }
+        		}) 
+    })
+})

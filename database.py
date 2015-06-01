@@ -80,7 +80,7 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
 
         else:
             #sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,categorieArticle=catearticle,contenuArticle=contenu))
+            connection.execute(article.insert().values(titreArticle=nomarticle,categorieArticle=catearticle,contenuArticle=contenu, Classement=1))
             return True
 
     finally:
@@ -135,20 +135,31 @@ def authentification(pseudo, password):
     # else :
         # return redirect('/')
 
-def retrieveArticle( pseudo ) :
+def retrieveProfile( pseudo ) :
     db = engine.connect()
     try:
-    
-        sel = select([membre.article.Classement, membre.article.contenuArticle, membre.article.titreArticle, membre.article.categorieArticle])
-        usr=db.execute(sel)
-        for row in usr:
-            return row
-    else :
+        if db.execute(select([membre.c.pseudo]).where(membre.c.pseudo == pseudo)).fetchone() != None:
+            sel = select([membre.c.nom, membre.c.prenom, membre.c.mail, membre.c.age, membre.c.pseudo]).where(and_(membre.c.pseudo == pseudo))
+            usr=db.execute(sel)
+            for row in usr:
+                return row
+        else :
             return None
     finally :
         db.close()
-
-
+        
+def retrieveArticle() :
+    db = engine.connect()
+    try:
+        sel = select([membre.article.titreArticle, membre.article.categorieArticle, membre.article.Classement, membre.article.contenuArticle]).where((membre.article.Classement == 1))
+        usr=db.execute(sel)
+        for row in usr:
+            print (row)
+            return row
+    finally:
+        db.close()
+        
+        
 #.....................................................................................................................
 #Definition des differentes routes 
 @app.route('/')
