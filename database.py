@@ -96,8 +96,11 @@ def note_moyenne(idArticle):
             return False
 
         else:
-            sel=select(sum([notes.c.note])).where(notes.c.idArticle==idArticle)
+            sel=select(func.sum([notes.c.note])).where(notes.c.idArticle==idArticle)
+            sel2=select(func.count([notes.c.note])).where(notes.c.idArticle==idArticle)
+            sel=sel/sel2
             return sel
+
     finally:
         connection.close()
 
