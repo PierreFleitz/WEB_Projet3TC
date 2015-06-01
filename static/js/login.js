@@ -169,7 +169,7 @@ jQuery(document).ready(function() {
                     //pseudoglob = response['pseudo'];
                     mailglob = response ['mail'];
                     ageglob = response ['age'];
-                    prenomglob=localStorage.getItem('plouf plouf');
+                    prenomglob=localStorage.getItem("plouf plouf");
                     localStorage.setItem("pseudoglob",response['pseudo']);
                     console.log(prenomglob + "kvof" + pseudoglob + mailglob);
                 	window.location.replace('/index');

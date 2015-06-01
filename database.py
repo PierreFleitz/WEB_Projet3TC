@@ -124,19 +124,29 @@ def authentification(pseudo, password):
   finally:
     connection.close() 
 
-#Affichage des meilleurs articles pour item
-def getMail(pseudo):
-    connection=engine.connect()
+# def profile():
+    # content = request.get_json(force=True)
+    # tok = content['Token']
+    # user = verify_auth_ token(tok)
+    # if user != None :
+        # res = retrieveProfile(user)
+        # print res
+        # return json.dumps({'name':res[0],'surname':res[1],'email':res[2],'date':res[3],'phone':res[4],'login':res[5]})
+    # else :
+        # return redirect('/')
+
+def retrieveProfile( pseudo, password) :
+    db = engine.connect()
     try:
-        if connection.execute(select([membre.c.mail]).where(membre.c.pseudo==pseudo)).fetchone() is None:
-            return False
-
-        else:
-            sel=select([membre.c.mail]).where(membre.c.pseudo==pseudo)
-            return sel
-
-    finally:
-        connection.close()
+        if db.execute(select([membre.c.pseudo]).where(membre.c.pseudo == pseudo)).fetchone() != None:
+            sel = select([membre.c.nom, membre.c.prenom, membre.c.mail, membre.c.age, membre.c.pseudo]).where(and_(membre.c.pseudo == pseudo))
+            usr=db.execute(sel)
+            for row in usr:
+                return row
+        else :
+            return None
+    finally :
+        db.close()
 
 
 #.....................................................................................................................
@@ -154,9 +164,10 @@ def login():
   if request.method == 'POST':
     if authentification(request.form['pseudo1'], request.form['password1']): #request lit le contenu
         print("Je suis dans ok authentification")
-        session['username'] =request.form['pseudo1']
-        #session['mail']= json.dumps(session['u'])
-        return json.dumps('success');
+        session['username'] = request.form['pseudo1']
+        res = retrieveProfile ( request.form['pseudo1'], request.form['password1'])
+        print (res)
+        return json.dumps({'nom':res[0],'prenom':res[1],'mail':res[2],'age':res[3], 'pseudo':res[4]})
     else:
         flash('Mot de passe/login invalide ou inexistant: ' + request.form['pseudo1'])
         print("Je suis dans erreur authentification")
