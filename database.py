@@ -152,7 +152,7 @@ def retrieveProfile( pseudo ) :
 def retrieveArticle() :
     db = engine.connect()
     try:
-        sel = select([membre.article.titreArticle, membre.article.categorieArticle, membre.article.Classement, membre.article.contenuArticle]).where((membre.article.Classement == 1))
+        sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle]).where(and_(article.c.Classement == 1))
         usr=db.execute(sel)
         for row in usr:
             print (row)
@@ -261,7 +261,9 @@ def cat4():
 
 @app.route('/item')
 def item():
-    return render_template('portfolio-item.html')
+    retrieveArticle()
+    return json.dumps
+    return render_template('portfolio-item.html') 
 
 
 @app.route('/logout')
