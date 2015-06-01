@@ -261,12 +261,15 @@ def cat4():
 
 @app.route('/item', methods = ['GET'])
 def item():
-    if request.method == 'GET':
-        res = retrieveArticle()
-        print("froot loop")
-        return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
-    else:
+
         return render_template('portfolio-item.html')
+        
+@app.route('/itemarticle')
+def itemarticle():
+    res = retrieveArticle()
+    return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
+
+    
 
 @app.route('/logout')
 def logout():
