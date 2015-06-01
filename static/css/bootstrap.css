@@ -6614,3 +6614,8 @@ button.close {
 .deroulant:hover{
 	font-weight:bold;
 }/*# sourceMappingURL=bootstrap.css.map */
+ 
+.imageflottante 
+{ 
+float:right; 
+}
