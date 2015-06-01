@@ -81,7 +81,7 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
 
         else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu, Classement=1))
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu, Classement=4))
             return True
 
     finally:
@@ -171,7 +171,7 @@ def retrieveProfile( pseudo ) :
 def retrieveArticle() :
     db = engine.connect()
     try:
-        sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle]).where(and_(article.c.Classement == 1))
+        sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle]).where(and_(article.c.Classement == 4))
         usr=db.execute(sel)
         for row in usr:
             print (row)

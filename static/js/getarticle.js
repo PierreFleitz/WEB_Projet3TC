@@ -1,5 +1,4 @@
 window.onload=function() {
-    alert("SBOOB")
     $.ajax({
         url: '/itemarticle',
         type: 'GET',
