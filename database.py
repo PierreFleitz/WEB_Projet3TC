@@ -78,10 +78,10 @@ def publication(nomarticle,catearticle,contenu,pseudo):
              return False
 
         else:
-            printf("WOUF WOUF")
+            null=True
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
             a_ins = article.insert()
-            connection.execute(a_ins.values(titreArticle=nomarticle,idMembre=sel,date=None,categorie=catearticle,contenuArticle=contenu))
+            connection.execute(a_ins.values(titreArticle=nomarticle,idMembre=sel,categorie=catearticle,contenuArticle=contenu))
             return True
 
     finally:
@@ -187,8 +187,8 @@ def signup():
   if request.method == 'POST':
     if inscription(request.form['prenom'],request.form['nom'],request.form['pseudo'],request.form['age'],request.form['mail'], request.form['password']): #request lit le contenu
         session['username'] = request.form['pseudo']
-        retrieveProfile(request.form['pseudo'])
-        session['username'] = request.form['pseudo1']
+        res = retrieveProfile(request.form['pseudo'])
+        session['username'] = request.form['pseudo']
         session['nom'] = res[0]
         session['prenom'] = res[1]
         session['mail'] = res[2]
