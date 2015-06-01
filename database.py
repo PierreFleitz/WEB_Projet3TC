@@ -241,7 +241,7 @@ def team():
 
 @app.route('/about')
 def about():
-    return render_template('faq.html')
+    return render_template('about.html')
 
 @app.route('/cat1')
 def cat1():
