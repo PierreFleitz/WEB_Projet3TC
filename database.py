@@ -41,6 +41,7 @@ article = Table('article', metadata,
             #Column('idMembre', Integer, ForeignKey('membre.idMembre'),nullable=False),
             #Column('date', TEXT, nullable=False),
             #Column('noteMoyenne', Integer),
+            Column('Classement', Integer),
             Column('categorieArticle', TEXT, nullable=False),
             Column('contenuArticle', TEXT, nullable=False))
 
@@ -134,15 +135,15 @@ def authentification(pseudo, password):
     # else :
         # return redirect('/')
 
-def retrieveProfile( pseudo ) :
+def retrieveArticle( pseudo ) :
     db = engine.connect()
     try:
-        if db.execute(select([membre.c.pseudo]).where(membre.c.pseudo == pseudo)).fetchone() != None:
-            sel = select([membre.c.nom, membre.c.prenom, membre.c.mail, membre.c.age, membre.c.pseudo]).where(and_(membre.c.pseudo == pseudo))
-            usr=db.execute(sel)
-            for row in usr:
-                return row
-        else :
+    
+        sel = select([membre.article.Classement, membre.article.contenuArticle, membre.article.titreArticle, membre.article.categorieArticle])
+        usr=db.execute(sel)
+        for row in usr:
+            return row
+    else :
             return None
     finally :
         db.close()

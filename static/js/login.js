@@ -231,7 +231,6 @@ jQuery(document).ready(function() {
         var $nomarticle= $('#nomarticle').val();
         var $catearticle = $('#catearticle').val();
         var $contenu = $('#contenu').val();
-            console.log("WOUF WOUF");
         	$.ajax({
         		url: '/addarticle',
         		type: 'POST',
