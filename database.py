@@ -128,7 +128,7 @@ def authentification(pseudo, password):
 # def profile():
     # content = request.get_json(force=True)
     # tok = content['Token']
-    # user = verify_auth_ token(tok)
+    # user = verify_auth_token(tok)
     # if user != None :
         # res = retrieveProfile(user)
         # print res
@@ -259,12 +259,14 @@ def cat3():
 def cat4():
     return render_template('Categ4.html')
 
-@app.route('/item')
+@app.route('/item', methods = ['GET'])
 def item():
-    retrieveArticle()
-    return json.dumps
-    return render_template('portfolio-item.html') 
-
+    if request.method == 'GET':
+        res = retrieveArticle()
+        print("froot loop")
+        return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
+    else:
+        return render_template('portfolio-item.html')
 
 @app.route('/logout')
 def logout():
