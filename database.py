@@ -168,27 +168,17 @@ def retrieveProfile( pseudo ) :
     finally :
         db.close()
         
-def retrieveArticle(classement) :
+def retrieveArticle() :
     db = engine.connect()
     try:
-        sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle]).where(and_(article.c.Classement == classement))
+        sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle]).where(and_(article.c.Classement == 4))
         usr=db.execute(sel)
         for row in usr:
-            #print (row)
+            print (row)
             return row
     finally:
         db.close()
         
-def retrieveArticleindex(classement) :
-    db = engine.connect()
-    try:
-        sel = select([article.c.titreArticle]).where(and_(article.c.Classement == 1))
-        usr=db.execute(sel)
-        for row in usr:
-            #print (row)
-            return row
-    finally:
-        db.close()
         
 #.....................................................................................................................
 #Definition des differentes routes 
@@ -295,13 +285,8 @@ def item():
         
 @app.route('/itemarticle')
 def itemarticle():
-    res = retrieveArticle(4)
+    res = retrieveArticle()
     return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
-    
-@app.route('/itemarticleindex')
-def itemarticleindex():
-    res = retrieveArticleindex(1)
-    return json.dumps({'titreArticle1':res[0]})#,'titreArticle2':res[1],'titreArticle3':res[2]})
 
     
 
