@@ -239,9 +239,9 @@ def error():
 def about():
     return render_template('about.html')
 
-@app.route('/faq')
-def faq():
-    return render_template('faq.html')
+@app.route('/team')
+def team():
+    return render_template('team.html')
 
 @app.route('/cat1')
 def cat1():
