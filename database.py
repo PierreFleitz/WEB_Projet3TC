@@ -88,6 +88,25 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
         connection.close()
 
 
+#Note moyenne
+def note_moyenne(idArticle):
+    connection=engine.connect()
+    try:
+        if connection.execute(select([notes.c.note]).where(notes.c.idArticle==idArticle)).fetchone() is None:
+            return False
+
+        else:
+            sel=select(func.sum([notes.c.note])).where(notes.c.idArticle==idArticle)
+            sel2=select(func.count([notes.c.note])).where(notes.c.idArticle==idArticle)
+            sel=sel/sel2
+            return sel
+
+    finally:
+        connection.close()
+
+
+
+
 
 
 #Inscription Membre
