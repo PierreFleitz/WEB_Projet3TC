@@ -38,10 +38,10 @@ membre = Table('membre', metadata,
 article = Table('article', metadata,
 			Column('titreArticle', String, nullable=False),
             Column('idArticle', Integer, autoincrement=True, primary_key=True),
-            Column('idMembre', Integer, ForeignKey('membre.idMembre'),nullable=False),
-            Column('date', TEXT, nullable=False),
-            Column('noteMoyenne', Integer),
-            Column('categorie', Integer, nullable=False),
+            #Column('idMembre', Integer, ForeignKey('membre.idMembre'),nullable=False),
+            #Column('date', TEXT, nullable=False),
+            #Column('noteMoyenne', Integer),
+            Column('categorieArticle', TEXT, nullable=False),
             Column('contenuArticle', TEXT, nullable=False))
 
 CategorieLink= Table('categorieLink', metadata,
@@ -71,17 +71,15 @@ def hash_for(password):
     return hashlib.sha256(salted).hexdigest()
 
 #Definition contenu article
-def publication(nomarticle,catearticle,contenu,pseudo):
+def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
     connection=engine.connect()
     try:
         if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
-             return False
+            return False
 
         else:
-            null=True
-            sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            a_ins = article.insert()
-            connection.execute(a_ins.values(titreArticle=nomarticle,idMembre=sel,categorie=catearticle,contenuArticle=contenu))
+            #sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
+            connection.execute(article.insert().values(titreArticle=nomarticle,categorieArticle=catearticle,contenuArticle=contenu))
             return True
 
     finally:
@@ -188,7 +186,6 @@ def login():
 def signup():
   if request.method == 'POST':
     if inscription(request.form['prenom'],request.form['nom'],request.form['pseudo'],request.form['age'],request.form['mail'], request.form['password']): #request lit le contenu
-        session['username'] = request.form['pseudo']
         res = retrieveProfile(request.form['pseudo'])
         session['username'] = request.form['pseudo']
         session['nom'] = res[0]
