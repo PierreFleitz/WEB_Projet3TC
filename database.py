@@ -94,12 +94,12 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
 def inscription(prenom=None,nom=None,pseudo=None,age=None,mail=None,password=None):
     connection=engine.connect()
     try:
-        if  prenom != None and nom != None and pseudo != None and mail != None and password != None:
+        if connection.execute(select([membre.c.pseudo]).where(and_(membre.c.pseudo == pseudo,membre.c.prenom==prenom,membre.c.nom==nom,membre.c.mail==mail))).fetchone() is None:
             connection.execute(membre.insert().values(prenom=prenom,nom=nom,pseudo=pseudo,age=age,mail=mail,password=password)) 
             return True
             
         else:
-            flash('Creation de compte impossible, parametres manquants')
+            flash('Creation de compte impossible, pseudo deja existant ')
             return False
 
     finally:
@@ -109,7 +109,7 @@ def inscription(prenom=None,nom=None,pseudo=None,age=None,mail=None,password=Non
 def authentification(pseudo, password):
   connection = engine.connect()
   try:
-        if connection.execute(select([membre.c.pseudo]).where(membre.c.pseudo == pseudo)).fetchone() is None:
+        if connection.execute(select([membre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
             print("Je suis dans erreur select ")
             return False
         else:
