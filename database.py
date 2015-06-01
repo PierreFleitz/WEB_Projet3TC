@@ -7,6 +7,7 @@ from flask  import *
 from markdown import markdown
 import os, hashlib, json
 from json import *
+from datetime import *
 
 # ............................................................................................... #
 
@@ -38,8 +39,8 @@ membre = Table('membre', metadata,
 article = Table('article', metadata,
 			Column('titreArticle', String, nullable=False),
             Column('idArticle', Integer, autoincrement=True, primary_key=True),
-            #Column('idMembre', Integer, ForeignKey('membre.idMembre'),nullable=False),
-            #Column('date', TEXT, nullable=False),
+            Column('idMembre', Integer, ForeignKey('membre.idMembre'),nullable=False),
+            Column('date', DATE, nullable=False),
             #Column('noteMoyenne', Integer),
             Column('Classement', Integer),
             Column('categorieArticle', TEXT, nullable=False),
@@ -79,8 +80,8 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
             return False
 
         else:
-            #sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,categorieArticle=catearticle,contenuArticle=contenu, Classement=1))
+            sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu, Classement=1))
             return True
 
     finally:

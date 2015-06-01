@@ -130,7 +130,7 @@
             {% endfor %}
             {% endif %}
             {% endwith %} -->
-            <form id="monForm" action="/login" method="POST" class="form-inline" role="form">
+            <form id="monForm" class="form-inline" role="form">
                <div class="form-group">
                   <label class="sr-only" for="pseudo1">Login</label>
                   <input type="text" class="form-control" name="pseudo1" id="pseudo1" placeholder="Enter Pseudo">
@@ -158,7 +158,7 @@
       </div>
   </div>
 
-  <form id="inscription" action="/signup" method="POST" class="form-inline" role="form" onsubmit="return verifForm(this)">
+  <form id="inscription" class="form-inline" role="form" onsubmit="return verifForm(this)">
     <div class="form-group">
        <label class="sr-only" for="Prénom">Prénom</label>
        <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" onBlur="verifName(this)" required>
