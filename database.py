@@ -93,7 +93,7 @@ def note_moyenne(idArticle):
     connection=engine.connect()
     try:
         if connection.execute(select([notes.c.note]).where(notes.c.idArticle==idArticle)).fetchone() is None:
-            return 0
+            return False
 
         else:
             sel=select(sum([notes.c.note])).where(notes.c.idArticle==idArticle)
