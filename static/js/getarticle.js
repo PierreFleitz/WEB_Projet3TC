@@ -1,5 +1,4 @@
 window.onload=function() {
-    var img = document.createElement('img');
     
     $.ajax({
         url: '/itemarticle',
@@ -11,10 +10,13 @@ window.onload=function() {
                 document.getElementById('erreurarticle').innerHTML = "On verra";
             }
             else {
+            var img = document.createElement('img');
             document.getElementById('titreArticle').innerHTML = response['titreArticle'];
             document.getElementById('contenuArticle').innerHTML = response['contenuArticle'];
             img.src = response['urlimage'];
             document.getElementById('urlimage').appendChild(img);
+            img.style.width = "400px";
+            img.style.height = "200px";
             }
         }
     })
