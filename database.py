@@ -44,7 +44,10 @@ article = Table('article', metadata,
             #Column('noteMoyenne', Integer),
             Column('Classement', Integer, autoincrement=True),
             Column('categorieArticle', TEXT, nullable=False),
+<<<<<<< HEAD
             Column('urlimage',BLOB,nullable=False),
+=======
+>>>>>>> 4125d92aa8ef13cd97b1ba552f4b7a59f5f15414
             Column('contenuArticle', TEXT, nullable=False))
 
 CategorieLink= Table('categorieLink', metadata,
@@ -74,7 +77,7 @@ def hash_for(password):
     return hashlib.sha256(salted).hexdigest()
 
 #Definition contenu article
-def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None,urlimage=None):
+def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
     connection=engine.connect()
     try:
         if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
@@ -82,17 +85,12 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None,urlima
 
         else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu,urlimage=urlimage,Classement=get_classement()))
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu))
             return True
 
     finally:
         connection.close()
-        
-def get_classement():
-    connection=engine.connect()
-    sel=select([article.c.idArticle]).count()
-    return sel
-    connection.close()
+
 
 #Note moyenne
 def note_moyenne(idArticle):
@@ -257,7 +255,7 @@ def signup():
 @app.route('/addarticle', methods=['GET', 'POST'])
 def addarticle():
   if request.method == 'POST':
-    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu'],session['pseudo'],request.form['urlimage']): 
+    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu'],session['pseudo']): 
        return json.dumps('success');
     else:
         return json.dumps('error');
@@ -300,12 +298,17 @@ def cat4():
 
 @app.route('/item', methods = ['GET'])
 def item():
+
         return render_template('portfolio-item.html')
         
 @app.route('/itemarticle')
 def itemarticle():
     res = retrieveArticle(1)
+<<<<<<< HEAD
     return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3],'urlimage':res[4]})
+=======
+    return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
+>>>>>>> 4125d92aa8ef13cd97b1ba552f4b7a59f5f15414
 
 @app.route('/itemarticleindex')
 def itemarticleindex():
