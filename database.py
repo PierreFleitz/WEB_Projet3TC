@@ -184,7 +184,6 @@ def retrieveArticle(classement) :
 def retrieveArticleindex(classement) :
     db = engine.connect()
     try:
-        print("kffkeopz")
         sel = select([article.c.titreArticle]).where(between(article.c.Classement, 1 ,4))
         usr=db.execute(sel).fetchall()
         res=[]
