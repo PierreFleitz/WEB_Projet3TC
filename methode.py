@@ -140,3 +140,17 @@ def retrieveArticleindex(classement) :
     finally:
         db.close()
 
+
+def retrieveArticleCategorie(classement,categories):
+    connection=engine.connect()
+    try:
+        sel=connection.execute(select([article.c.titreArticle]).where(between(article.c.Classement,0,5))).fetchall()
+        res=[]
+        for row in sel:
+            res.append(row[0])
+
+        return res
+
+    finally:
+        connection.close()
+
