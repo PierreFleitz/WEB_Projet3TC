@@ -82,12 +82,17 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None,urlima
 
         else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu,urlimage=urlimage))
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu,urlimage=urlimage,Classement=get_classement()))
             return True
 
     finally:
         connection.close()
-
+        
+def get_classement():
+    connection=engine.connect()
+    sel=select([article.c.idArticle]).count()
+    return sel
+    connection.close()
 
 #Note moyenne
 def note_moyenne(idArticle):
