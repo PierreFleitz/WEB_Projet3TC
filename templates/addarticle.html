@@ -140,9 +140,20 @@
                         <div class="control-group form-group">
                             <div class="controls">
                                 <label>Catégorie associée :</label>
-                                <input type="tel" class="form-control" id="catearticle" required data-validation-required-message="Entrez une catégorie associée à votre article.">
+                                <div class="dropdown">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                    Choisissez une catégorie
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu  .dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Actualité</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Lifestyle</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Voiture</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Humour</a></li>
+                                </ul>
                             </div>
                         </div>
+                    </div>
                         <hr>
                         <div class="control-group form-group">
                             <div class="controls">
