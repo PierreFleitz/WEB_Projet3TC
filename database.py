@@ -81,7 +81,7 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
 
         else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu,classement=6))
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu))
             return True
 
     finally:
@@ -299,7 +299,7 @@ def item():
         
 @app.route('/itemarticle')
 def itemarticle():
-    res = retrieveArticle(6)
+    res = retrieveArticle(1)
     return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
 
 @app.route('/itemarticleindex')
