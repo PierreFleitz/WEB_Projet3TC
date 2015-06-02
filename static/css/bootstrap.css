@@ -6630,4 +6630,24 @@ button.close {
    color: orange;
    cursor: pointer;
 }
+.imageflottante 
+{ 
+  float:right;
+  margin: 6px;
+}
+.textGauche
+{ 
+  float:left;
+}
+.textDroite
+{ 
+  float:right;
+}
+.vide
+{
+  height: 270px;
+}
+.marge {
+margin-left: 3em;
+}
 /*# sourceMappingURL=bootstrap.css.map */

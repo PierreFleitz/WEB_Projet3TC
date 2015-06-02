@@ -170,7 +170,8 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="deroulant" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    Architecture du site :</a>
+                                    Architecture du site :
+                                </a>
                             </h4>
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
@@ -183,12 +184,13 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="deroulant" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Interfaces</a>
+                                <a class="deroulant" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Schémas des bases de données :
+                                </a>
                             </h4>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <em> Les interfaces</em>
+                                <em><img src="/static/SchemaBDD.jpg"></em>
                             </div>
                         </div>
                     </div>
@@ -196,12 +198,51 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="deroulant" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Schémas des bases de données :</a>
+                                <a class="deroulant" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Compte rendu :</a>
                             </h4>
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <em>Schémas ici</em>
+
+                                <p><span class="marge"></span>Bienvenue sur le site web de la FeBB. La FeBB est un magazine amateur collaboratif qui propose à ses inscrits de tester ses talents d’écrivain/journaliste en publiant des articles sur un thème au choix. Les visiteurs du site peuvent lire tous les articles publiés par les inscrits. Les inscrits peuvent publier des articles, et évaluer les articles des autres afin que chacun puisse mesurer son talent.</p>
+                                
+                                <p><i>Pour mieux comprendre comment le site fonctionne, voici un détail des structures et méthodes utilisés :</i></p>
+                                
+                                <p><strong><u>Architecture Front-end :</u></strong></p>
+                                
+                                <p><span class="marge"></span>L’architecture Front-end du site est basé sur du JavaScript, html, CSS et son framework Bootstrap. L’objectif du site étant de se mettre à la disposition de ses inscrits, nous avons choisi le JavaScript qui permet une meilleure interaction avec l’utilisateur. De plus, nous avons pu développer les connaissances  acquises notamment en cours d’ELP et se familiariser avec le langage certainement le plus utilisés dans le domaine du web.</p>
+                                
+                                <p><span class="marge"></span>Pour la structure visuelle du site, l’utilisation de Bootstrap nous a permis de gagner du temps et d’obtenir une interface visuelle propre et agréable à l’utilisateur. Pour éviter que le site ait un air banal, nous avons fait une étude poussée des fonctions CSS de Bootstrap. Ainsi en exploitant ces fonctions, nous obtenons un site personnalisé et à l’image de ses développeurs.</p>
+                                
+                                <p><strong><u>Architecture Back-end :</u></strong></p>
+                                
+                                <p><span class="marge"></span>L’architecture Back-end du site est basé sur une base de donnée Sqlite et des programmes python, utilisant les frameworks Sqlalchemy et Flask vues en cours de WEB. L’utilisation de Sqlite est détaillé plus bas dans le paragraphe « Base de donnée ». Comme pour le JavaScript, utilisé python nous a permis de développer notre cours de WEB et de ne pas avoir à apprendre un nouveau langage.</p>
+                                
+                                <p><strong><u>L’interface REST :</u></strong></p>
+                                
+                                <p><span class="marge"></span>Pour satisfaire l’interface REST, il faut que les responsabilités entre le client et le serveur soient séparées et que chaque requête envoyée au serveur par le client contienne les informations nécessaires à sa compréhension. Les données transférées sont des données JSON lisibles et récupérable par le serveur. On effectue les requêtes de manières asynchrones en utilisant AJAX.</p>
+
+                                <p><strong><u>Découpage de code modulaire</u></strong></p>
+                                
+                                <p><span class="marge"></span>Notre découpage modulaire est de type Modèle Vue Contrôleur. Il est basé sur plusieurs fichiers Python pour le back end et des pages HTML et feuilles de style CSS pour le Front-end. La relation Front/Back est gérée par des fichiers JavaScript utilisant AJAX.</p>
+                                
+                                <img class="img-responsive img-portfolio imageflottante" src="/static/mvc.png" alt="">
+
+                                <p><span class="marge"></spang>Principalement, la Vue est constituée de nos pages HTML qui sont décrites par les feuilles de style CSS et dynamisées par nos fichiers JavaScript. En effet, nos fichiers JavaScript contiennent les méthodes utilisant AJAX pour envoyer les requêtes au Contrôleur.</p>
+                                
+                                <p><span class="marge"></spang>Le Contrôleur est modélisé par un fichier nommé « serveur.py » qui contient toute les routes vers les pages HTML. Il définit aussi le comportement de réponse aux requêtes issues de la Vue.</p>
+                                
+                                <p><span class="marge"></spang>Le modèle est modélisé par un fichier nommé « methode.py » qui contient les implémentations de toutes les méthodes appelés par « serveur.py ». Ces méthodes effectuent les opérations liées à la base de données. Un fichier « creationDatabase.py » permet de créer la base.</p>
+                                
+                                <p><span class="marge"></spang>En résumé, l’utilisateur lance son navigateur et tape l’URL de notre site. Une requête http avertit notre « serveur.py » qui retourne la Vue (page HTML demandée). Puis l’utilisateur navigue sur la page et, en cliquant, envoie des requêtes AJAX à « serveur.py ». Afin de satisfaire l’utilisateur, « serveur.py » appel une méthode de « methode.py » qui cherche dans la base de donnée. Quand les données sont prêtes « serveur.py » les envoie (données JSON) à la Vue (page HTML).</p>
+
+                                <p><strong><u>Base de données</u></strong></p>
+                                <img class="img-responsive img-portfolio imageflottante" src="/static/SchemaBDD2.jpg">
+                                <p><span class="marge"></spang>Pour l’utilisation de notre site,  nous n’avons pas besoin d’utiliser une base mySQL qui aurait été difficile à mettre en place. Pour simplifier et continué à profiter de nos cours de WEB, nous avons utilisé une base de données Sqlite. Elle se nomme database.db et est créée lors du lancement de creationDatabase.py .</p>
+
+
+                                <p><span class="marge"></spang>On rappelle ci-contre le schéma de nos bases de données.</p>
+
                             </div>
                         </div>
                     </div>
