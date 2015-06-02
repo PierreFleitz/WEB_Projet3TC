@@ -42,7 +42,7 @@ article = Table('article', metadata,
             Column('idMembre', Integer, ForeignKey('membre.idMembre'),nullable=False),
             Column('date', DATE, nullable=False),
             #Column('noteMoyenne', Integer),
-            Column('Classement', Integer),
+            Column('Classement', Integer, autoincrement=True),
             Column('categorieArticle', TEXT, nullable=False),
             Column('contenuArticle', TEXT, nullable=False))
 
@@ -81,7 +81,7 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
 
         else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu, Classement=classement))
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu, Classement =1))
             return True
 
     finally:
@@ -176,7 +176,7 @@ def retrieveArticle(classement) :
         print("PLOUF")
         usr=db.execute(sel)
         for row in usr:
-            #print (row)
+            print (row)
             return row
     finally:
         db.close()
@@ -184,15 +184,13 @@ def retrieveArticle(classement) :
 def retrieveArticleindex(classement) :
     db = engine.connect()
     try:
-        print("kf^pergkoergkr^kgergkorpfkeopz")
-        sel = select([article.c.titreArticles]).where(and_(article.c.Classement == classement, article.c.Classement==classement+1, article.c.Classement == classement+2 ))
+        print("kffkeopz")
+        sel = select([article.c.titreArticle]).where(between(article.c.Classement, 1 ,4))
         print(sel)
         usr=db.execute(sel)
-        print("fkopezkfopezkfopez")
         for row in usr:
             print("PLOUF")
             print (row)
-            print("fpfjezop")
             return row
     finally:
         db.close()
@@ -302,7 +300,7 @@ def item():
         
 @app.route('/itemarticle')
 def itemarticle():
-    res = retrieveArticle(4)
+    res = retrieveArticle(1)
     return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
 
 @app.route('/itemarticleindex')
