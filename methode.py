@@ -123,14 +123,13 @@ def retrieveArticle(classement) :
         usr=db.execute(sel)
         for row in usr:
             return row
-        print (row[4])
     finally:
         db.close()
         
 def retrieveArticleindex(classement) :
     db = engine.connect()
     try:
-        sel = select([article.c.titreArticle]).where(between(article.c.Classement, 0 ,2))
+        sel = select([article.c.titreArticle, article.c.urlimage]).where(between(article.c.Classement, 0 ,2))
         usr=db.execute(sel).fetchall()
         res=[]
         for row in usr:
@@ -148,7 +147,6 @@ def retrieveArticleCategorie(classement,categories):
         res=[]
         for row in sel:
             res.append(row[0])
-
         return res
 
     finally:

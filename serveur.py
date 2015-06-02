@@ -134,7 +134,7 @@ def itemarticle():
 @app.route('/itemarticleindex')
 def itemarticleindex():
     res = retrieveArticleindex(0)
-    return json.dumps({'titreArticle1':res[0],'titreArticle2':res[1],'titreArticle3':res[2],})
+    return json.dumps({'titreArticle1':res[0],'titreArticle2':res[1],'titreArticle3':res[2],'urlimage1':res[3]})
 
     
 
