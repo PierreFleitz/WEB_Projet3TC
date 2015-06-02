@@ -186,12 +186,12 @@ def retrieveArticleindex(classement) :
     try:
         print("kffkeopz")
         sel = select([article.c.titreArticle]).where(between(article.c.Classement, 1 ,4))
-        print(sel)
-        usr=db.execute(sel)
+        usr=db.execute(sel).fetchall()
+        res=[]
         for row in usr:
-            print("PLOUF")
-            print (row)
-            return row
+            res.append(row[0])
+        return res
+
     finally:
         db.close()
         
@@ -306,7 +306,7 @@ def itemarticle():
 @app.route('/itemarticleindex')
 def itemarticleindex():
     res = retrieveArticleindex(1)
-    return ("success") # json.dumps({'titreArticle1':res[0]})#,'titreArticle2':res[1],'titreArticle3':res[2]})
+    return json.dumps({'titreArticle1':res[0],'titreArticle2':res[1],'titreArticle3':res[2]})
 
     
 
