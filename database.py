@@ -252,7 +252,7 @@ def signup():
 @app.route('/addarticle', methods=['GET', 'POST'])
 def addarticle():
   if request.method == 'POST':
-    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu'],request.form['urlimage'],session['pseudo']): 
+    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu'],session['pseudo'],request.form['urlimage']): 
        return json.dumps('success');
     else:
         return json.dumps('error');
