@@ -81,7 +81,7 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
 
         else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu, Classement=4))
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu, Classement=classement))
             return True
 
     finally:
@@ -172,6 +172,8 @@ def retrieveArticle(classement) :
     db = engine.connect()
     try:
         sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle]).where(and_(article.c.Classement == classement))
+        print(sel)
+        print("PLOUF")
         usr=db.execute(sel)
         for row in usr:
             #print (row)
@@ -182,10 +184,15 @@ def retrieveArticle(classement) :
 def retrieveArticleindex(classement) :
     db = engine.connect()
     try:
-        sel = select([article.c.titreArticle]).where(and_(article.c.Classement == 1))
+        print("kf^pergkoergkr^kgergkorpfkeopz")
+        sel = select([article.c.titreArticles]).where(and_(article.c.Classement == classement, article.c.Classement==classement+1, article.c.Classement == classement+2 ))
+        print(sel)
         usr=db.execute(sel)
+        print("fkopezkfopezkfopez")
         for row in usr:
-            #print (row)
+            print("PLOUF")
+            print (row)
+            print("fpfjezop")
             return row
     finally:
         db.close()
@@ -301,7 +308,7 @@ def itemarticle():
 @app.route('/itemarticleindex')
 def itemarticleindex():
     res = retrieveArticleindex(1)
-    return json.dumps({'titreArticle1':res[0]})#,'titreArticle2':res[1],'titreArticle3':res[2]})
+    return ("success") # json.dumps({'titreArticle1':res[0]})#,'titreArticle2':res[1],'titreArticle3':res[2]})
 
     
 
