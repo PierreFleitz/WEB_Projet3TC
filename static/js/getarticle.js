@@ -1,4 +1,6 @@
 window.onload=function() {
+    var img = document.createElement('img');
+    
     $.ajax({
         url: '/itemarticle',
         type: 'GET',
@@ -11,8 +13,25 @@ window.onload=function() {
             else {
             document.getElementById('titreArticle').innerHTML = response['titreArticle'];
             document.getElementById('contenuArticle').innerHTML = response['contenuArticle'];
-            document.image.src=response['urlimage'];
+            img.src = response['urlimage'];
+            document.getElementById('urlimage').appendChild(img);
             }
         }
     })
+}
+
+function displayImg(link) {
+
+    var img = new Image(),
+        overlay = document.getElementById('overlay');
+
+    img.addEventListener('load', function() {
+        overlay.innerHTML = '';
+        overlay.appendChild(img);
+    }, false);
+
+    img.src = link.href;
+    overlay.style.display = 'block';
+    overlay.innerHTML = '<span>Chargement en cours...</span>';
+
 }

@@ -306,7 +306,7 @@ def item():
         
 @app.route('/itemarticle')
 def itemarticle():
-    res = retrieveArticle(1)
+    res = retrieveArticle(3)
     return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3],'urlimage':res[4]})
 
 
@@ -321,6 +321,10 @@ def itemarticleindex():
 def logout():
     session.clear()
     return redirect('/index' )
+    
+@app.errorhandler(404)
+def nimportequoi(error):
+  return redirect ('/error')
 
 # ............................................................................................... #
 

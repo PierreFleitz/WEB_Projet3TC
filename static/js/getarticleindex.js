@@ -1,4 +1,5 @@
 window.onload=function() {
+    var myImg = new Image();
     $.ajax({
         url: '/itemarticleindex',
         type: 'GET',
