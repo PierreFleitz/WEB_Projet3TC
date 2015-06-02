@@ -121,22 +121,6 @@ function verifForm(f)
 	}
 }
 
-function afficheprenom() {
-    //window.document.write(prenomglob); 
-    console.log("Affichage pseudo"+ prenomglob + mailglob + pseudoglob)
-}
-function affichernom(){
-    document.write(nomglob);
-}
-function afficherpseudo() {
-    document.write(pseudoglob);
-}
-function affichermail() {
-    document.write(mailglob);
-}
-function afficherage() {
-    document.write(ageglob);
-}
 
 jQuery(document).ready(function() {
 	$('#monForm').on('submit', function(e) {
@@ -256,3 +240,29 @@ jQuery(document).ready(function() {
         		}) 
     })
 })
+
+jQuery(document).ready(function() {
+	$('#lienarticle1').on('click', function(e) {
+        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+
+        var $Classement = 1;
+     
+        $.ajax({
+            url: '/itemarticle',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                Classement:$Classement
+            },
+                success: function(response) {
+            console.log(response);
+            if(response == 'error') {
+                document.getElementById('erreurLogin').innerHTML = " Retrieve article";
+            }
+            else {
+                window.location.replace('/index');
+            }
+        }
+            })          	
+        })
+    })

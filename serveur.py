@@ -125,16 +125,17 @@ def item():
 
         return render_template('portfolio-item.html')
         
-@app.route('/itemarticle')
+@app.route('/itemarticle', methods = ['GET', 'POST'])
 def itemarticle():
-    res = retrieveArticle(0)
-    return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3],'urlimage':res[4]})
+    if request.method =='POST':
+        res = retrieveArticle(request.form['Classement'])
+        return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3],'urlimage':res[4]})
 
 
 @app.route('/itemarticleindex')
 def itemarticleindex():
-    res = retrieveArticleindex(0)
-    return json.dumps({'titreArticle1':res[0],'titreArticle2':res[1],'titreArticle3':res[2],'urlimage1':res[3]})
+    res = retrieveArticleindex()
+    return json.dumps({'titreArticle1':res[0],'urlimage1':res[1],'titreArticle2':res[2],'urlimage2':res[3],'titreArticle3':res[4],'urlimage3':res[5]})
 
     
 

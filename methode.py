@@ -91,12 +91,12 @@ def authentification(pseudo, password):
     connection.close() 
 
 #Obtention de l'auteur
-def get_auteur(classement):
-    connection=engine.connect()
-    sel=select([article.c.idMembre]).where(article.c.Classement==classement)
-    sel2=select([membre.c.nom,membre.c.prenom]).where(membre.c.idMembre=sel)
-    return sel2
-    connection.close()
+# def get_auteur(classement):
+    # connection=engine.connect()
+    # sel=select([article.c.idMembre]).where(article.c.Classement==classement)
+    # sel2=select([membre.c.nom,membre.c.prenom]).where(membre.c.idMembre=sel)
+    # return sel2
+    # connection.close()
 
 
 # def profile():
@@ -135,7 +135,7 @@ def retrieveArticle(classement) :
     finally:
         db.close()
         
-def retrieveArticleindex(classement) :
+def retrieveArticleindex() :
     db = engine.connect()
     try:
         sel = select([article.c.titreArticle, article.c.urlimage]).where(between(article.c.Classement, 0 ,2))
@@ -143,6 +143,7 @@ def retrieveArticleindex(classement) :
         res=[]
         for row in usr:
             res.append(row[0])
+            res.append(row[1])
         return res
 
     finally:
