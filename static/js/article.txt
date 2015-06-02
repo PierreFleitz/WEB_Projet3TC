@@ -1,6 +1,6 @@
 window.onload=function() {
     $.ajax({
-        url: '/itemarticle',
+        url: '/itemarticleindex',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
@@ -9,9 +9,9 @@ window.onload=function() {
                 document.getElementById('erreurarticle').innerHTML = "On verra";
             }
             else {
-            document.getElementById('titreArticle').innerHTML = response['titreArticle'];
-            document.getElementById('contenuArticle').innerHTML = response['contenuArticle'];
-            document.image.src=response['urlimage'];
+            document.getElementById('titreArticle1').innerHTML = response['titreArticle1'];
+            document.getElementById('titreArticle2').innerHTML = response['titreArticle2'];
+            document.getElementById('titreArticle3').innerHTML = response['titreArticle3'];
             }
         }
     })

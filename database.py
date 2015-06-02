@@ -44,7 +44,7 @@ article = Table('article', metadata,
             #Column('noteMoyenne', Integer),
             Column('Classement', Integer, autoincrement=True),
             Column('categorieArticle', TEXT, nullable=False),
-            Column('urlimage',TEXT,nullable=False),
+            Column('urlimage',BLOB,nullable=False),
             Column('contenuArticle', TEXT, nullable=False))
 
 CategorieLink= Table('categorieLink', metadata,
@@ -177,20 +177,20 @@ def retrieveProfile( pseudo ) :
 def retrieveArticle(classement) :
     db = engine.connect()
     try:
-        sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle]).where(and_(article.c.Classement == classement))
+        sel = select([article.c.titreArticle, article.c.categorieArticle, article.c.Classement, article.c.contenuArticle,article.c.urlimage]).where(and_(article.c.Classement == classement))
         print(sel)
         print("PLOUF")
         usr=db.execute(sel)
         for row in usr:
-            print (row)
             return row
+        print (row[4])
     finally:
         db.close()
         
 def retrieveArticleindex(classement) :
     db = engine.connect()
     try:
-        sel = select([article.c.titreArticle]).where(between(article.c.Classement, 1 ,4))
+        sel = select([article.c.titreArticle]).where(between(article.c.Classement, 0 ,2))
         usr=db.execute(sel).fetchall()
         res=[]
         for row in usr:
@@ -304,12 +304,12 @@ def item():
         
 @app.route('/itemarticle')
 def itemarticle():
-    res = retrieveArticle(6)
-    return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3]})
+    res = retrieveArticle(1)
+    return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3],'urlimage':res[4]})
 
 @app.route('/itemarticleindex')
 def itemarticleindex():
-    res = retrieveArticleindex(1)
+    res = retrieveArticleindex(0)
     return json.dumps({'titreArticle1':res[0],'titreArticle2':res[1],'titreArticle3':res[2]})
 
     
