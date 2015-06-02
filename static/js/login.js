@@ -240,29 +240,3 @@ jQuery(document).ready(function() {
         		}) 
     })
 })
-
-jQuery(document).ready(function() {
-	$('#lienarticle1').on('click', function(e) {
-        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
-
-        var $Classement = 1;
-     
-        $.ajax({
-            url: '/itemarticle',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                Classement:$Classement
-            },
-                success: function(response) {
-            console.log(response);
-            if(response == 'error') {
-                document.getElementById('erreurLogin').innerHTML = " Retrieve article";
-            }
-            else {
-                window.location.replace('/index');
-            }
-        }
-            })          	
-        })
-    })

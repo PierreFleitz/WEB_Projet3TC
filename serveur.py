@@ -127,11 +127,8 @@ def item():
         
 @app.route('/itemarticle', methods = ['GET', 'POST'])
 def itemarticle():
-    if request.method =='POST':
         res = retrieveArticle(request.form['Classement'])
         return json.dumps({'titreArticle':res[0],'catearticle':res[1],'Classement':res[2],'contenuArticle':res[3],'urlimage':res[4]})
-
-
 @app.route('/itemarticleindex')
 def itemarticleindex():
     res = retrieveArticleindex()

@@ -1,9 +1,13 @@
 window.onload=function() {
-    
+    var $Classement=2;
+    console.log($Classement);
     $.ajax({
         url: '/itemarticle',
-        type: 'GET',
+        type: 'POST',
         dataType: 'json',
+        data: {
+                Classement:$Classement
+            },
         success: function(response) {
             console.log(response);
             if(response == 'error') {
@@ -20,20 +24,4 @@ window.onload=function() {
             }
         }
     })
-}
-
-function displayImg(link) {
-
-    var img = new Image(),
-        overlay = document.getElementById('overlay');
-
-    img.addEventListener('load', function() {
-        overlay.innerHTML = '';
-        overlay.appendChild(img);
-    }, false);
-
-    img.src = link.href;
-    overlay.style.display = 'block';
-    overlay.innerHTML = '<span>Chargement en cours...</span>';
-
 }
