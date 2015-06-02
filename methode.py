@@ -90,6 +90,15 @@ def authentification(pseudo, password):
   finally:
     connection.close() 
 
+#Obtention de l'auteur
+def get_auteur(classement):
+    connection=engine.connect()
+    sel=select([article.c.idMembre]).where(article.c.Classement==classement)
+    sel2=select([membre.c.nom,membre.c.prenom]).where(membre.c.idMembre=sel)
+    return sel2
+    connection.close()
+
+
 # def profile():
     # content = request.get_json(force=True)
     # tok = content['Token']
