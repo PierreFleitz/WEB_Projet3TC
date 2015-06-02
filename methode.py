@@ -90,6 +90,9 @@ def authentification(pseudo, password):
   finally:
     connection.close() 
 
+
+
+
 #Obtention de l'auteur
 # def get_auteur(classement):
     # connection=engine.connect()
