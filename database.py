@@ -44,6 +44,7 @@ article = Table('article', metadata,
             #Column('noteMoyenne', Integer),
             Column('Classement', Integer, autoincrement=True),
             Column('categorieArticle', TEXT, nullable=False),
+            Column('urlimage',TEXT,nullable=False),
             Column('contenuArticle', TEXT, nullable=False))
 
 CategorieLink= Table('categorieLink', metadata,
@@ -73,7 +74,7 @@ def hash_for(password):
     return hashlib.sha256(salted).hexdigest()
 
 #Definition contenu article
-def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
+def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None,urlimage=None):
     connection=engine.connect()
     try:
         if connection.execute(select([membre.c.idMembre]).where(membre.c.pseudo == pseudo)).fetchone() is None:
@@ -81,7 +82,7 @@ def publication(nomarticle=None,catearticle=None,contenu=None,pseudo=None):
 
         else:
             sel = select([membre.c.idMembre]).where( membre.c.pseudo == pseudo)
-            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu,classement=6))
+            connection.execute(article.insert().values(titreArticle=nomarticle,idMembre=sel,date=date.today(),categorieArticle=catearticle,contenuArticle=contenu,urlimage=urlimage))
             return True
 
     finally:
@@ -251,7 +252,7 @@ def signup():
 @app.route('/addarticle', methods=['GET', 'POST'])
 def addarticle():
   if request.method == 'POST':
-    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu'],session['pseudo']): 
+    if publication(request.form['nomarticle'],request.form['catearticle'],request.form['contenu'],request.form['urlimage'],session['pseudo']): 
        return json.dumps('success');
     else:
         return json.dumps('error');
@@ -294,7 +295,6 @@ def cat4():
 
 @app.route('/item', methods = ['GET'])
 def item():
-
         return render_template('portfolio-item.html')
         
 @app.route('/itemarticle')

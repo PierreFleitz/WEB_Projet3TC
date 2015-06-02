@@ -231,6 +231,7 @@ jQuery(document).ready(function() {
         var $nomarticle= $('#nomarticle').val();
         var $catearticle = $('#catearticle').val();
         var $contenu = $('#contenu').val();
+        var $urlimage = $('#urlimage').val();
         	$.ajax({
         		url: '/addarticle',
         		type: 'POST',
@@ -238,7 +239,8 @@ jQuery(document).ready(function() {
         		data: {
         			nomarticle:$nomarticle,
         			catearticle:$catearticle,
-        			contenu:$contenu
+        			contenu:$contenu,
+                    urlimage:$urlimage
         		},
         			success: function(response) {
                 console.log(response);
