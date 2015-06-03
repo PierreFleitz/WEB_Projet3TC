@@ -126,6 +126,12 @@ function get_classement(id) {
     console.log(localStorage.getItem('Classement'));
 }
 
+function get_categorie(id) {
+    var Categorie;
+    localStorage.setItem('Categorie',id);
+    console.log('Categorie');
+}
+
 jQuery(document).ready(function() {
 	$('#monForm').on('submit', function(e) {
         e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire

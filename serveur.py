@@ -122,7 +122,6 @@ def cat4():
 
 @app.route('/item', methods = ['GET'])
 def item():
-
         return render_template('portfolio-item.html')
         
 @app.route('/itemarticle', methods = ['GET', 'POST'])

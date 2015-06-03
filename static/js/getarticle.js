@@ -1,7 +1,6 @@
 window.onload=function() {
     var Classement =localStorage.getItem('Classement');
     console.log(Classement)
-    console.log("PLOUF")
     $.ajax({
         url: '/itemarticle',
         type: 'POST',
