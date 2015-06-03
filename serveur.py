@@ -106,7 +106,7 @@ def team():
 
 @app.route('/cat1')
 def cat1():
-    res = retrieveArticleCategorie("Actualité")
+    res = retrieveArticleCategorie("Actualite")
     try:
         return json.dumps({'titreArticle1':res[0],'urlimage1':res[1],'titreArticle2':res[2],'urlimage2':res[3],'titreArticle3':res[4],'urlimage3':res[5], 'titreArticle4':res[6],'urlimage4':res[7],'titreArticle5':res[8],'urlimage5':res[9],'titreArticle6':res[10],'urlimage6':res[11]})
     except ValueError:
