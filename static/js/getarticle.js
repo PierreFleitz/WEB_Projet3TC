@@ -20,9 +20,9 @@ window.onload=function() {
             document.getElementById('contenuArticle').innerHTML = response['contenuArticle'];
             img.src = response['urlimage'];
             document.getElementById('urlimage').appendChild(img);
+            img.className = "img-responsive img-rounded imageflottante";
             img.style.width = "400px";
             img.style.height = "200px";
-            img.className = "img-responsive img-rounded imageflottante";
             }
         }
     })

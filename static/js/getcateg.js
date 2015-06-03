@@ -19,9 +19,9 @@ window.onload=function() {
             document.getElementById('titreArticle1').innerHTML = response['titreArticle1'];
             document.getElementById('titreArticle2').innerHTML = response['titreArticle2'];
             document.getElementById('titreArticle3').innerHTML = response['titreArticle3'];
-            document.getElementById('titreArticle1').innerHTML = response['titreArticle4'];
-            document.getElementById('titreArticle2').innerHTML = response['titreArticle5'];
-            document.getElementById('titreArticle3').innerHTML = response['titreArticle6'];
+            document.getElementById('titreArticle4').innerHTML = response['titreArticle4'];
+            document.getElementById('titreArticle5').innerHTML = response['titreArticle5'];
+            document.getElementById('titreArticle6').innerHTML = response['titreArticle6'];
             img1.src = response['urlimage1'];
             document.getElementById('urlimage1').appendChild(img1);
             img1.style.width = "291.328px";
