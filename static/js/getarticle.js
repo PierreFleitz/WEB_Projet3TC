@@ -1,12 +1,13 @@
 window.onload=function() {
-    var $Classement=2;
-    console.log($Classement);
+    var Classement =localStorage.getItem('Classement');
+    console.log(Classement)
+    console.log("PLOUF")
     $.ajax({
         url: '/itemarticle',
         type: 'POST',
         dataType: 'json',
         data: {
-                Classement:$Classement
+                Classement:Classement
             },
         success: function(response) {
             console.log(response);

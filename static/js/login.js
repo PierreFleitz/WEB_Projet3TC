@@ -120,7 +120,11 @@ function verifForm(f)
 		return false;
 	}
 }
-
+function get_classement(id) {
+    var Classement;
+    localStorage.setItem('Classement', id);
+    console.log(localStorage.getItem('Classement'));
+}
 
 jQuery(document).ready(function() {
 	$('#monForm').on('submit', function(e) {
