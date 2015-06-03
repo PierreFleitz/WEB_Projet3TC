@@ -159,10 +159,11 @@ def retrieveArticleCategorie(categorie):
     connection=engine.connect()
     try:
         res=[]
-        i=0
-        sel=connection.execute(select([article.c.titreArticle]).where(article.c.categorieArticle==categorie)).fetchall()
+        sel=connection.execute(select([article.c.titreArticle, article.c.urlimage]).where(article.c.categorieArticle==categorie)).fetchall()
         for row in sel:
             res.append(row[0])
+            res.append(row[1])
+        print ("PLOUF PLOUF PLOUF PLOUF")
         return res
     finally:
         connection.close()

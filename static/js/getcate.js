@@ -1,6 +1,7 @@
 window.onload=function() {
+    console.log("WOULI WOULOU")
     $.ajax({
-        url: '/itemarticleindex',
+        url: '/cat1',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
