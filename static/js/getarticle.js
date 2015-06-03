@@ -21,6 +21,7 @@ window.onload=function() {
             document.getElementById('urlimage').appendChild(img);
             img.style.width = "400px";
             img.style.height = "200px";
+            img.className = "img-responsive img-rounded imageflottante";
             }
         }
     })
