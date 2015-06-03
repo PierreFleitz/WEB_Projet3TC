@@ -6635,6 +6635,11 @@ button.close {
   float:right;
   margin: 6px;
 }
+.imgflottantecentre 
+{ 
+  float:center;
+  margin: 1px;
+}
 .textGauche
 { 
   float:left;
@@ -6642,6 +6647,10 @@ button.close {
 .textDroite
 { 
   float:right;
+}
+.textCentre
+{ 
+  float:center;
 }
 .vide
 {

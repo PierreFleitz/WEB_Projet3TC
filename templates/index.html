@@ -163,33 +163,39 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Bonjour <strong>{{session.username }}</strong> </h2>
+                <center><h2 class="page-header">Bonjour <strong>{{session.username }}</strong> </h2></center>
             </div>
-            <div class="col-md-6">
-                
-                <div style="padding:3px; padding-left:6px; border-left:4px solid #d0d0d0; background-color:#f1f1f1; margin-left:20px; font-style:italic;">
-                    <h3><strong>Votre compte:</strong></h3>
-                    
-                    <p><strong>Informations à propos de vous :</strong></p>
-                    <ul>
-                        <li>Tu es enregistre sous le nom de : <strong><i>{{ session.prenom}} {{session.nom}}</i></strong> </li>
-                        <li>Ton mail est : <strong><i>{{session.mail}}</i></strong></li>
-                        <li>Tu as <strong><i>{{session.age}}</i></strong> ans</li>
-                    </ul>   
-                    <hr>
-                    <p><strong>Informations à propos de votre compte :</strong></p>
-                    <ul> 
-                        <li>Tu as <strong>4</strong> articles écrits</strong></p></li>
-                        <li>Tes articles ont été lus <strong>{{ session.nombre_vues }}</strong> fois.</li>
-                        <li>Tu as <strong>0</strong> fans.</li>
-                    </ul>
+            <div class="col-md-12">
+            
+                    <p>
+                        
+                        <center><h3><strong>Votre compte</strong></h3></center>
+                        
+                        <div class="textGauche">
+                            <strong>Informations à propos de vous :</strong>
+                            <ul>
+                                <li>Tu es enregistre sous le nom de : <strong><i>{{ session.prenom}} {{session.nom}}</i></strong> </li>
+                                <li>Ton mail est : <strong><i>{{session.mail}}</i></strong></li>
+                                <li>Tu as <strong><i>{{session.age}}</i></strong> ans</li>
+                            </ul>
+                        </div>  
 
-                </div>
+
+                        <div class="textDroite">
+                            <strong>Informations à propos de votre compte :</strong>
+                            <ul> 
+                                <li>Tu as <strong>4</strong> articles écrits</strong></p></li>
+                                <li>Tes articles ont été lus <strong>{{ session.nombre_vues }}</strong> fois.</li>
+                                <li>Tu as <strong>0</strong> fans.</li>
+                            </ul>
+                        </div>
+
+                        <center><img class="img-responsive img-circle" src="http://www.celeste.fr/images/stories/images/web/monde-connecte.png" alt=""></center>
+
+                    </p>
 
             </div>
-            <div class="col-md-6">
-                <img class="img-responsive img-circle" src="http://www.celeste.fr/images/stories/images/web/monde-connecte.png" alt="">
-            </div>
+
         </div>       
         {% else%}
         <div class="container">
@@ -201,6 +207,7 @@
                 </div>
             </center>
             <div class="col-md-6">
+                
                 <p><strong>FeBB c'est l'opportunité de :</strong></p>
                 <ul>
                     <li>Publier des articles.</li>
@@ -234,8 +241,7 @@
 
                     </a>
                     <div class="panel-body">
-                        <p>Contenu / résumé de l'article 1.</p>
-                        <a href="#" class="btn btn-default">En savoir plus</a>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -244,13 +250,13 @@
                     <div class="panel-heading">
                         <h4 id="titreArticle2"><i class="fa fa-fw fa-check"></i></h4>
                     </div>
+
                     <a href="/item" name="lienarticle" id="1" onclick="get_classement(this.id)">
                                            <div id="urlimage2" class="imageflottante"></div>
 
                     </a>
                     <div class="panel-body">
-                        <p>Contenu / résumé de l'article 2.</p>
-                        <a href="#" class="btn btn-default">En savoir plus</a>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -261,11 +267,9 @@
                     </div>
                     <a href="/item" name="lienarticle" id="2" onclick="get_classement(this.id)">
                                             <div id="urlimage3" class="imageflottante"></div>
-
                     </a>
                     <div class="panel-body">
-                        <p>Contenu / résumé de l'article 3.</p>
-                        <a href="#" class="btn btn-default">En savoir plus</a>
+                        <p></p>
                     </div>
 
                 </div>
