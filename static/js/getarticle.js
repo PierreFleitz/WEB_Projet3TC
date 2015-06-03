@@ -1,6 +1,7 @@
 window.onload=function() {
     var Classement =localStorage.getItem('Classement');
     console.log(Classement)
+    console.log("PLOUF")
     $.ajax({
         url: '/itemarticle',
         type: 'POST',
@@ -21,8 +22,26 @@ window.onload=function() {
             document.getElementById('urlimage').appendChild(img);
             img.style.width = "400px";
             img.style.height = "200px";
-            img.className = "img-responsive img-rounded imageflottante";
             }
         }
     })
+}
+
+function noter(Note){
+    $.ajax({                                  
+    url: "/notation",
+    data: {
+        Note: Note,
+        Id: id,
+    },
+    dataType: "json",
+    type: 'POST',
+  }).done(function(data) {
+      $('#divNote').html(data['Note'])
+      $('#divVote').html(data['Vote'])
+  }).fail(function(args) {
+      console.log('Bad request :', args);
+  });
+
+
 }
