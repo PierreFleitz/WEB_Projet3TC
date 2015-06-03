@@ -157,6 +157,7 @@ def retrieveArticleCategorie(categorie):
     connection=engine.connect()
     try:
         res=[]
+        i=0
         sel=connection.execute(select([article.c.titreArticle]).where(and_(between(article.c.Classement,0,5), article.c.categorieArticle==categorie))).fetchall()
         for row in sel:
             res.append(row[0])
