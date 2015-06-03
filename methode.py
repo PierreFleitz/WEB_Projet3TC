@@ -35,16 +35,18 @@ def get_classement():
 
 
 #Note moyenne
-def note_moyenne(idArticle):
+def note_moyenne(idArticle,note):
     connection=engine.connect()
     try:
         if connection.execute(select([notes.c.note]).where(notes.c.idArticle==idArticle)).fetchone() is None:
             return False
 
         else:
+            connection.execute(notes.insert().values(idArticle=idArticle,note=note))
             sel=select(func.sum([notes.c.note])).where(notes.c.idArticle==idArticle)
             sel2=select(func.count([notes.c.note])).where(notes.c.idArticle==idArticle)
             sel=sel/sel2
+            sel=round(sel)
             return sel
 
     finally:

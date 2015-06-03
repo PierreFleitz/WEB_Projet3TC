@@ -136,7 +136,12 @@ def itemarticleindex():
     res = retrieveArticleindex()
     return json.dumps({'titreArticle1':res[0],'urlimage1':res[1],'titreArticle2':res[2],'urlimage2':res[3],'titreArticle3':res[4],'urlimage3':res[5]})
 
-    
+@app.route('/notation')
+def notation(note,idArticle):
+    res=note_moyenne(note,idArticle)
+    return json.dumps({'note':res[0]})
+
+
 
 @app.route('/logout')
 def logout():
