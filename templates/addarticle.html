@@ -29,10 +29,9 @@
 
     </head>
 
-    <body>
+    <body background="">
 
         <!-- Navigation -->
-         
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-inner">
                 <div class="container">
@@ -44,7 +43,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand-crayon" href="/index"><img src="/static/home1.png"></a>
+                         <a class="navbar-brand-crayon" href="/index"><img src="/static/home1.png"></a>
                         {% if 'username' in session %}                                                                                            
                             <a class="navbar-brand-crayon" href="/addarticle"><img src="/static/crayon2.png"></a>
                                 {% else%}                             
@@ -59,7 +58,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catégories<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/cat1"> Actualité</a>
+                                        <a href="/cat1" id="Actualité"> Actualité</a>
                                     </li>
                                     <li>
                                         <a href="/cat2"> Lifestyle</a>
@@ -90,8 +89,8 @@
                                 </ul>
                             </li>
                             <li>
-                                {% if 'username' in session %}
-                                <a href="/logout">Déconnection</a>
+                                {% if 'username' in session %}                                                                                            
+                                <a href="/logout">Déconnection <strong>{{ session.mail}}</strong></a>
                                 {% else%}
                                 <a href="/login">Se connecter</a>
                                 {% endif%}
