@@ -156,11 +156,14 @@ def retrieveArticleindex() :
 def retrieveArticleCategorie(categorie):
     connection=engine.connect()
     try:
-        sel=connection.execute(select([article.c.titreArticle]).where(and_(between(article.c.Classement,0,5), article.c.categorieArticle==categorie))).fetchall()
-        res=[]
-        for row in sel:
-            res.append(row[0])
-        return res
+        if sel=connection.execute(select([article.c.titreArticle]).where(and_(between(article.c.Classement,0,5), article.c.categorieArticle==categorie))).fetchone() != None:
+            res=[]
+            for row in sel:
+                res.append(row[0])
+            return res
+        else:
+        return False
+        
 
     finally:
         connection.close()

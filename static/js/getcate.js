@@ -1,13 +1,8 @@
 window.onload=function() {
-    var myImg = new Image();
-    var Categorie =localStorage.getItem('Categorie');
     $.ajax({
         url: '/itemarticleindex',
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
-        data: {
-                Categorie:Categorie
-            },
         success: function(response) {
             console.log(response);
             if(response == 'error') {

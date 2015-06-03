@@ -129,7 +129,6 @@ function get_classement(id) {
 function get_categorie(id) {
     var Categorie;
     localStorage.setItem('Categorie',id);
-    console.log('Categorie');
 }
 
 jQuery(document).ready(function() {
