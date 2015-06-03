@@ -242,7 +242,7 @@ jQuery(document).ready(function() {
                 }
                 else {
                 	console.log("Bien envoyé")
-                	window.location.replace('/item');
+                	window.location.replace('/index');
                     alert("Document bien posté");
                 }
             }
